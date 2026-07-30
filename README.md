@@ -6,15 +6,46 @@
 
 ---
 
-## Ligando o sistema
+## Instalação
+
+Repositório privado — só clona quem já tem acesso.
+
+### Pelo Claude Code (mais rápido)
+
+Abre o Claude Code em qualquer pasta e cola:
 
 ```
-git clone <URL deste repositório>
-cd ZordOS
+Clona o https://github.com/fkestevaogreco-cell/ZordOs.git na pasta atual,
+entra nela e roda o /instalar.
+```
+
+Ele clona, entra na pasta nova e dispara a entrevista de setup. Você só
+responde.
+
+### Pelo terminal (mais previsível)
+
+```
+git clone https://github.com/fkestevaogreco-cell/ZordOs.git
+cd ZordOs
 code .
 ```
 
-Na janela do VS Code que abrir: terminal integrado → `claude` → `/abrir`.
+Na janela do VS Code que abrir: terminal integrado → `claude` → `/instalar`.
+
+---
+
+Quando o `/instalar` terminar, renomeia a pasta `ZordOs/` pro que fizer
+sentido pra você (fecha o VS Code, renomeia no Finder/Explorer, abre de
+novo). O `/instalar` roda uma vez só — te entrevista sobre contexto
+pessoal/negócio, monta a memória (`_memoria/`) e adapta o `CLAUDE.md`.
+Depois disso, todo dia começa com `/abrir`.
+
+Se já rodou o `/instalar` antes (esse repo já vem com `_memoria/`
+preenchida pro Estevão), pode pular direto pro `/abrir`.
+
+Pra publicação automática (Instagram/Facebook) e geração de imagem IA,
+copia `.env.example` pra `.env` e preenche as chaves — ver `scripts/README.md`
+pra detalhes de cada uma.
 
 ---
 
