@@ -2,8 +2,7 @@
 
 > O agente pessoal do Estevão dentro do Claude Code.
 
-Estrutura espelhada no MazyOS (sistema operacional do negócio da TRIIVISION),
-mas separada porque aqui o contexto é pessoal, não só do negócio.
+
 
 ---
 
