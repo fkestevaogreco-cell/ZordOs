@@ -1,0 +1,27 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Claude Code (sessões locais, não devem ir pro repo)
+.claude/projects/
+.claude/sessions/
+.claude/shell-snapshots/
+.claude/telemetry/
+.claude/file-history/
+.claude/backups/
+
+# Dependências
+node_modules/
+
+# Segredos (tokens da Meta, chaves de API) — nunca versionar
+.env
+.env.*
+!.env.example
+
+# Arquivos temporários
+*.log
+*.tmp
