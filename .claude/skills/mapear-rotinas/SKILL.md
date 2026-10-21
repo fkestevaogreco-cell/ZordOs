@@ -29,7 +29,7 @@ Pra cada rotina mapeada:
 **Faz:** [uma frase]
 **Recebe:** [input]
 **Entrega:** [output]
-**Precisa de:** [arquivos de _memoria/, ferramenta externa, etc.]
+**Precisa de:** [arquivos de pessoal/, ferramenta externa, etc.]
 ```
 
 Mostrar a lista inteira de uma vez e perguntar:
@@ -42,7 +42,7 @@ Pra cada uma:
 1. `.claude/skills/<nome>/` nova
 2. `SKILL.md` com frontmatter (`name`, `description`), workflow claro, dependências e regras
 3. Template ou exemplo de apoio, se a skill precisar, dentro da própria pasta
-4. Calibrar tom e conteúdo lendo `_memoria/preferencias.md` e `_memoria/perfil.md`
+4. Calibrar tom e conteúdo lendo `pessoal/sobre-mim.md`
 
 ### Passo 4 — Fechar
 

@@ -38,7 +38,7 @@ Ele clona, entra na pasta e já dispara a entrevista.
 pra você (fecha o VS Code, renomeia no Finder/Explorer, abre de novo) e passa
 a usar `/abrir` no início de cada sessão.
 
-Já rodou o `/instalar` antes e a `_memoria/` já tá preenchida? Pula direto
+Já rodou o `/instalar` antes e a `pessoal/` já tá preenchida? Pula direto
 pro `/abrir`.
 
 Quer publicação automática (Instagram/Facebook) e geração de imagem por IA?
@@ -93,8 +93,8 @@ ar, SSL válido, link quebrado.
 
 ## Por baixo do capô
 
-`_memoria/` é o que o Claude lê antes de responder: `perfil.md` (quem você
-é), `preferencias.md` (como você fala) e `foco.md` (o que importa agora).
-`identidade/` guarda cor, fonte e padrão visual, e qualquer peça gerada
-respeita isso. `scripts/` são as integrações (Instagram, Facebook, geração
-de imagem) que as skills chamam quando precisam sair do alcance da IA pura.
+`pessoal/` é o que o Claude lê antes de responder: `sobre-mim.md` (quem
+você é e como você fala) e `agora.md` (o que importa agora). `marca/`
+guarda cor, fonte e padrão visual, e qualquer peça gerada respeita isso.
+`scripts/` são as integrações (Instagram, Facebook, geração de imagem) que
+as skills chamam quando precisam sair do alcance da IA pura.

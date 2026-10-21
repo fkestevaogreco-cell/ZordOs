@@ -4,7 +4,7 @@ description: >
   Monta a estrutura inteira de uma campanha do Google Ads a partir de um briefing ou da
   pesquisa de SEO, e entrega em CSV pronto pra importar no Google Ads Editor: campanhas,
   grupos por cluster de palavra-chave, RSAs, extensões e negativas. Lê o briefing de
-  `_memoria/perfil.md` e, se existir, da pesquisa de SEO. Use quando o usuário pedir
+  `pessoal/sobre-mim.md` e, se existir, da pesquisa de SEO. Use quando o usuário pedir
   "criar campanha google ads", "anúncio google", "google ads", "csv pro google ads",
   ou /anuncio-google.
 ---
@@ -15,8 +15,7 @@ Do briefing direto pro CSV — sem montar grupo por grupo na interface do Google
 
 ## Dependências
 
-- **Contexto:** `_memoria/perfil.md` (produto, público, região, diferenciais)
-- **Tom:** `_memoria/preferencias.md`
+- **Contexto:** `pessoal/sobre-mim.md` (produto, público, região, diferenciais, tom)
 - **Pesquisa de SEO, se existir:** `marketing/seo/01-pesquisa-demanda.md`, `06-google-ads.md`
 - **Saída:** `marketing/campanhas/google-ads-<YYYY-MM-DD>/`
 
@@ -87,12 +86,12 @@ Negativas globais: termos genéricos fora do escopo + marcas concorrentes
 
 **Limites do Google:** headline até 30 caracteres, description até 90. Sem emoji, sem caixa alta, sem repetir palavra. Sem superlativo não comprovado ("o melhor", "número 1") sem base real.
 
-Tom conforme `_memoria/preferencias.md`.
+Tom conforme `pessoal/sobre-mim.md`.
 
 ### Passo 5 — Extensões
 
 - **Sitelinks** (4-6): "Quem somos", "Catálogo", "Cases", "WhatsApp", "Como chegar"
-- **Chamada:** telefone de `_memoria/perfil.md`
+- **Chamada:** telefone de `pessoal/sobre-mim.md`
 - **Snippets:** lista de serviços/categorias
 - **Preço**, se fizer sentido: faixas dos serviços principais
 - **Promoção**, se houver: desconto ou condição especial
@@ -156,4 +155,4 @@ Orçamento sugerido pra começar: R$<X>/dia por <Y> dias antes de avaliar.
 - **Match type:** Phrase na maioria, Exact pros termos mais valiosos, Broad só com dado histórico consistente.
 - **Lista de negativa global é obrigatória** — sem ela, o orçamento vaza em busca irrelevante.
 - **Sem conversão configurada, o Google não otimiza nada** — avisar e pedir esse setup antes de ativar.
-- Copy sempre seguindo `_memoria/preferencias.md`, sem jargão que o público não usa.
+- Copy sempre seguindo `pessoal/sobre-mim.md`, sem jargão que o público não usa.

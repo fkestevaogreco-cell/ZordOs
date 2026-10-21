@@ -1,8 +1,8 @@
-# Identidade visual
+# Guia de marca
 
 > Como a sua marca aparece em tudo que o ZordOS gera.
 > As skills de conteúdo, carrossel e post leem esse arquivo antes de criar qualquer visual.
-> Veja exemplos reais em `templates/identidade/exemplos/` pra se inspirar.
+> Veja exemplos reais em `modelos/marca-exemplos/` pra se inspirar.
 > Edite quando a marca evoluir.
 
 ---
@@ -52,7 +52,7 @@ sobre como isso se traduz visualmente.]
 
 ## Logo
 
-- **Arquivo:** identidade/logo.png *(colocar o arquivo aqui — arraste a logo pra essa pasta)*
+- **Arquivo:** marca/logo.png *(colocar o arquivo aqui — arraste a logo pra essa pasta)*
 - **Versão pra fundo escuro:** [se precisar de uma versão alternativa da logo]
 - **Onde usar:** slide final do carrossel (CTA), header de propostas, slides de apresentação
 - **Tamanho sugerido:** largura entre 120-200px nos HTMLs

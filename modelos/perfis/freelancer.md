@@ -10,8 +10,8 @@
 Aqui ficam todos os clientes, briefings, entregas e cobrança."]
 
 **Estrutura de pastas:**
-- `_memoria/` — quem sou, como falo, foco atual
-- `identidade/` — minha marca pessoal aplicada nas entregas
+- `pessoal/` — quem sou, como falo, foco atual
+- `marca/` — minha marca pessoal aplicada nas entregas
 - `clientes/` — uma subpasta por cliente, autossuficiente
 - `propostas/` — propostas em rascunho ou enviadas
 - `marketing/` — meu próprio conteúdo (Insta, LinkedIn, portfolio)

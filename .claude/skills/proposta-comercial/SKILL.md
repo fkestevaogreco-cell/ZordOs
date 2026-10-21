@@ -11,9 +11,8 @@ description: >
 
 ## Dependências
 
-- **Contexto do negócio:** `_memoria/perfil.md`
-- **Tom de voz:** `_memoria/preferencias.md`
-- **Identidade visual** (se for gerar como documento, não só texto): `identidade/design-guide.md`
+- **Contexto:** `pessoal/sobre-mim.md`
+- **Identidade visual** (se for gerar como documento, não só texto): `marca/guia.md`
 
 ---
 
@@ -40,7 +39,7 @@ solopreneur mais direto):
 ```markdown
 # Proposta — [Nome do cliente]
 
-**De:** [nome do negócio, de _memoria/perfil.md]
+**De:** [nome do negócio, de pessoal/sobre-mim.md]
 **Data:** [data de hoje]
 **Validade da proposta:** [padrão 15 dias, perguntar se quiser outro prazo]
 
@@ -86,7 +85,7 @@ futuras com o mesmo cliente.
 
 - Nunca inventar valor, prazo ou escopo que o usuário não confirmou — perguntar antes
   de assumir
-- Tom segue `_memoria/preferencias.md`, mas propostas comerciais pedem mais formalidade
+- Tom segue `pessoal/sobre-mim.md`, mas propostas comerciais pedem mais formalidade
   que o padrão de conversa — calibrar pra cima sem virar "prezado cliente" genérico
 - Se o cliente já tem pasta própria (criada via `/novo-projeto`), salvar a proposta
   dentro dela em vez de `propostas/` solto

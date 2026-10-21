@@ -11,8 +11,7 @@ description: >
 
 ## Dependências
 
-- **Contexto:** `_memoria/perfil.md`, pra entender o que os números representam
-- **Tom:** `_memoria/preferencias.md`
+- **Contexto:** `pessoal/sobre-mim.md`, pra entender o que os números representam e calibrar o tom
 
 ---
 
@@ -76,4 +75,4 @@ Perguntar se quer uma versão em HTML pra apresentar ou compartilhar.
 - Texto corrido, não só tópicos soltos — tem que dar pra entender sem abrir o arquivo original
 - Nunca inventar número que não está na fonte
 - Dado incompleto ou corrompido: avisar antes de analisar em cima dele
-- Tom conforme `_memoria/preferencias.md`
+- Tom conforme `pessoal/sobre-mim.md`

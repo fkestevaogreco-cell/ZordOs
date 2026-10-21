@@ -57,7 +57,7 @@ Conforme a resposta 2:
 
 ## O que já vem pronto da raiz
 
-Tom de voz, marca e contexto geral vêm de `_memoria/` e `identidade/` na raiz. Não duplicar isso aqui.
+Tom de voz, marca e contexto geral vêm de `pessoal/` e `marca/` na raiz. Não duplicar isso aqui.
 
 ## Regras só desse projeto
 

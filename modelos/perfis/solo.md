@@ -11,8 +11,8 @@ pessoal e do meu negócio. Aqui eu produzo, publico, mantenho relação
 com audiência e fecho venda."]
 
 **Estrutura de pastas:**
-- `_memoria/` — quem eu sou, como falo, o que tá em foco
-- `identidade/` — cores, fontes, logo, padrão visual
+- `pessoal/` — quem eu sou, como falo, o que tá em foco
+- `marca/` — cores, fontes, logo, padrão visual
 - `marketing/` — conteúdo, SEO, campanhas (saída das skills)
 - `saidas/` — análises, emails, documentos pontuais
 - `produtos/` — meus produtos próprios (cursos, ebooks, ofertas)

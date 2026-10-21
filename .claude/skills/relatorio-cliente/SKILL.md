@@ -11,7 +11,7 @@ description: >
 
 ## Dependências
 
-- **Tom de voz:** `_memoria/preferencias.md`
+- **Tom de voz:** `pessoal/sobre-mim.md`
 - **Contexto do projeto** (se o cliente tem pasta própria via `/novo-projeto`): ler
   `CLAUDE.md`/`briefing.md` dessa pasta antes de perguntar o que já está documentado lá
 - **Histórico:** se existir `propostas/<cliente>-*.md` (de `/proposta-comercial`), ler

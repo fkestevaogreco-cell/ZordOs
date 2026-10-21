@@ -1,8 +1,8 @@
-# Foco
+# Agora
 
-> O que importa agora. Prioridades, metas, prazos — pessoais e do negócio.
-> O Claude usa isso pra decidir o que sugerir primeiro e o que adiar.
-> Atualize sempre que as prioridades mudarem.
+> O que importa nesse momento. Prioridades, metas, prazos, pessoais e do
+> negócio. O Claude usa isso pra decidir o que sugerir primeiro e o que
+> adiar. Atualize sempre que as prioridades mudarem.
 
 ## Fase do negócio
 

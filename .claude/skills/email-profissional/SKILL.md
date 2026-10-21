@@ -11,8 +11,7 @@ description: >
 
 ## Dependências
 
-- **Contexto:** `_memoria/perfil.md`
-- **Tom:** `_memoria/preferencias.md`
+- **Contexto:** `pessoal/sobre-mim.md`
 
 ---
 
@@ -47,7 +46,7 @@ Assunto: [direto, descreve o conteúdo, sem suspense]
 
 [parágrafo 3 — próximo passo, se tiver]
 
-[assinatura, puxando o nome de _memoria/perfil.md]
+[assinatura, puxando o nome de pessoal/sobre-mim.md]
 ```
 
 ### Passo 3 — Quando o assunto é delicado
@@ -60,7 +59,7 @@ Cobrança, feedback difícil, recusa: oferecer duas versões e deixar o usuário
 
 ## Regras
 
-- Tom segue `_memoria/preferencias.md`
+- Tom segue `pessoal/sobre-mim.md`
 - Sem corporativês desnecessário
 - Assunto específico, nunca genérico tipo "Seguimento" ou "Proposta"
 - Resposta a algo: citar o que foi dito logo na abertura

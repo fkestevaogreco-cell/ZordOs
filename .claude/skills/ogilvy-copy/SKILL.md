@@ -16,9 +16,8 @@ ideia memorável, não por hype, adjetivo vazio ou superlativo sem prova.
 
 ## Dependências
 
-- **Contexto do negócio:** `_memoria/perfil.md`
-- **Tom de voz:** `_memoria/preferencias.md`
-- **Identidade visual:** `identidade/design-guide.md`
+- **Contexto:** `pessoal/sobre-mim.md`
+- **Identidade visual:** `marca/guia.md`
 
 ---
 
@@ -89,5 +88,5 @@ Por quê: [o fato do Passo 1 que sustenta ela]
 - Headline nunca é trocadilho ou "criativa" às custas de ser clara
 - Se o usuário pedir algo mais vendedor/urgente (resposta direta, não institucional),
   sugerir `/schwartz-copy` em vez de forçar o tom institucional
-- Tom segue `_memoria/preferencias.md`, mas Ogilvy puxa pra mais factual/menos hype por
+- Tom segue `pessoal/sobre-mim.md`, mas Ogilvy puxa pra mais factual/menos hype por
   natureza da metodologia — avisar se os dois conflitarem

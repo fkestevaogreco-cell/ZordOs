@@ -1,7 +1,7 @@
 ﻿# Identidade — Agência de Performance
 
 > Identidade visual que rodou em cliente real — agência de
-> performance, tom direto, sem decoração. Adapta a tua em `identidade/design-guide.md`.
+> performance, tom direto, sem decoração. Adapta a tua em `marca/guia.md`.
 
 ---
 
@@ -48,7 +48,7 @@ Dark e bold. Interface de agência de performance: sem frescura, sem decoração
 
 ## Logo
 
-- **Arquivo:** identidade/logo.svg
-- **Versão pra fundo claro:** identidade/logo-dark.svg
+- **Arquivo:** marca/logo.svg
+- **Versão pra fundo claro:** marca/logo-dark.svg
 - **Onde usar:** slide final do carrossel (CTA), header de propostas, slides de apresentação
 - **Tamanho sugerido:** largura entre 120-200px nos HTMLs

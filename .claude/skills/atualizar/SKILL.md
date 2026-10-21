@@ -1,7 +1,7 @@
 ---
 name: atualizar
 description: >
-  Compara os arquivos de contexto (`_memoria/perfil.md`, `preferencias.md`, `foco.md`,
+  Compara os arquivos de contexto (`pessoal/sobre-mim.md`, `pessoal/agora.md`,
   `CLAUDE.md`) com o estado real da pasta e corrige o que ficou pra trás. Use quando o
   usuário disser "atualiza", "/atualizar", "varre o projeto", ou pedir uma reconciliação geral.
 ---
@@ -23,18 +23,18 @@ Levantar:
 
 Pra cada arquivo de contexto, perguntar se ainda reflete a realidade:
 
-- `_memoria/perfil.md` ainda descreve seu momento atual?
-- `_memoria/foco.md` ainda tem datas e prioridades válidas?
+- `pessoal/sobre-mim.md` ainda descreve seu momento atual?
+- `pessoal/agora.md` ainda tem datas e prioridades válidas?
 - `CLAUDE.md` ainda bate com o que de fato existe na pasta?
-- `identidade/design-guide.md` ainda é coerente com as últimas peças geradas?
+- `marca/guia.md` ainda é coerente com as últimas peças geradas?
 
 ### Passo 3 — Propor, não aplicar direto
 
 ```
 Achei [N] pontos fora de sincronia:
 
-1. _memoria/perfil.md — ...
-2. _memoria/foco.md — ...
+1. pessoal/sobre-mim.md — ...
+2. pessoal/agora.md — ...
 
 Aplico tudo, só uma parte, ou nenhuma?
 ```

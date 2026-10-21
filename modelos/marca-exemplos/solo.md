@@ -1,7 +1,7 @@
 ﻿# Identidade — Criador Solo
 
 > Identidade visual que rodou em cliente real — criador solo,
-> marca pessoal, audience-first. Adapta a tua em `identidade/design-guide.md`.
+> marca pessoal, audience-first. Adapta a tua em `marca/guia.md`.
 
 ---
 
@@ -48,7 +48,7 @@ Quente, humano e editorial. Tons terrosos com fundo off-white. Parece um livro b
 
 ## Logo
 
-- **Arquivo:** identidade/logo.png
-- **Versão pra fundo escuro:** identidade/logo-branco.png
+- **Arquivo:** marca/logo.png
+- **Versão pra fundo escuro:** marca/logo-branco.png
 - **Onde usar:** slide final do carrossel (CTA), header de propostas, slides de apresentação
 - **Tamanho sugerido:** largura entre 120-200px nos HTMLs

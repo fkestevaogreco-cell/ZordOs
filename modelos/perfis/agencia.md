@@ -11,8 +11,8 @@
 Aqui ficam todos os clientes, propostas, conteúdo e entregas."]
 
 **Estrutura de pastas:**
-- `_memoria/` — quem é a agência, como falamos, foco atual
-- `identidade/` — marca da agência (aplicada nas peças internas)
+- `pessoal/` — quem é a agência, como falamos, foco atual
+- `marca/` — marca da agência (aplicada nas peças internas)
 - `clientes/` — uma subpasta por cliente, autossuficiente
 - `briefings/` — briefings antes de virar cliente
 - `propostas/` — propostas em andamento

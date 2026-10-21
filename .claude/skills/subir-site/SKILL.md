@@ -12,7 +12,7 @@ description: >
 
 ## Dependências
 
-- **Contexto do negócio:** `_memoria/perfil.md`
+- **Contexto do negócio:** `pessoal/sobre-mim.md`
 
 ---
 

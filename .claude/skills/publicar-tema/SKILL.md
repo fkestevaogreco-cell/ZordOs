@@ -18,8 +18,7 @@ Skill orquestradora: um tema entra, saem o artigo, o carrossel e três legendas,
 - **Pesquisas de apoio:** `marketing/seo/01-pesquisa-demanda.md`, `02-analise-concorrencia.md`, `08-geo-otimizacao-ia.md`
 - **Carrossel:** chama `.claude/skills/carrossel/SKILL.md` na fase certa
 - **Blog:** pasta `site/` — formato varia (Astro em `site/astro-site/src/content/blog/`, WordPress, outro). Sem site ainda, perguntar antes de seguir
-- **Tom:** `_memoria/preferencias.md`
-- **Contexto:** `_memoria/perfil.md`, `identidade/design-guide.md`
+- **Contexto:** `pessoal/sobre-mim.md`, `marca/guia.md`
 
 ---
 
@@ -55,7 +54,7 @@ Checar antes quais já viraram post (olhar a pasta do blog) pra não duplicar.
 title: "Título que puxa pra keyword, mas não robótico"
 description: "150-160 caracteres, keyword + benefício pro leitor"
 publishedAt: YYYY-MM-DD
-author: "<nome de _memoria/perfil.md>"
+author: "<nome de pessoal/sobre-mim.md>"
 keywords:
   - keyword principal
   - variação 1
@@ -74,7 +73,7 @@ draft: true
 5. H2 conectando com o que o negócio oferece, sem virar anúncio
 6. CTA final (WhatsApp, formulário, contato)
 
-**Regras de escrita** (`_memoria/preferencias.md` manda):
+**Regras de escrita** (`pessoal/sobre-mim.md` manda):
 - Sem inglês de marketing que o público não usa
 - Frase curta, parágrafo de 2-4 linhas
 - Concreto sempre que der: número, data, certificação
