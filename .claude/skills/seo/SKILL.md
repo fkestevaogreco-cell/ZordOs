@@ -1,310 +1,212 @@
 ﻿---
 name: seo
 description: >
-  Fluxo completo de SEO, GEO e Google Ads em 8 passos: pesquisa de demanda, análise de
-  concorrência, Google Meu Negócio, otimização on-page, estratégia de conteúdo, Google Ads,
-  checklist de monitoramento e GEO (aparecer em IAs como ChatGPT, Gemini, Perplexity).
-  Use quando o usuário pedir "seo", "geo", "palavras-chave", "google ads",
-  "aparecer no google", "aparecer no chatgpt", "aparecer nas ias",
-  "google meu negócio", "gmb", "analisar concorrência seo",
-  "pesquisa de nicho", "google trends".
+  Roda o ciclo completo de SEO, GEO e Google Ads em 8 etapas: demanda, concorrência, Google
+  Meu Negócio, on-page, estratégia de conteúdo, Google Ads, monitoramento e GEO (aparecer em
+  respostas de IA como ChatGPT, Gemini, Perplexity). Use quando o usuário pedir "seo", "geo",
+  "palavras-chave", "google ads", "aparecer no google", "aparecer no chatgpt", "aparecer nas
+  ias", "google meu negócio", "gmb", "analisar concorrência seo", "pesquisa de nicho",
+  "google trends".
 ---
 
-# /seo — SEO completo + GEO + Google Ads
+# /seo — Ciclo completo de SEO, GEO e Google Ads
 
 ## Dependências
 
-- **Contexto do negócio:** `_memoria/perfil.md`
-- **Tom de voz:** `_memoria/preferencias.md`
-- **Estratégia atual:** `_memoria/foco.md`
-- **Ferramentas:** WebSearch, WebFetch (nativos)
-- **Outputs vão em:** `marketing/seo/`
+- **Contexto:** `_memoria/perfil.md`
+- **Tom:** `_memoria/preferencias.md`
+- **Foco atual:** `_memoria/foco.md`
+- **Ferramentas:** WebSearch, WebFetch
+- **Saída:** `marketing/seo/`
 
 ---
 
-## Workflow
+## As 8 etapas
 
-### Passo 1 — DEMANDA: O que as pessoas buscam nesse nicho?
+### Etapa 1 — DEMANDA: o que o público busca
 
-**Objetivo:** Entender se existe demanda real e como as pessoas buscam.
+**Pergunta a responder:** existe demanda de verdade, e como as pessoas procuram por isso?
 
-1. Ler `_memoria/perfil.md` pra extrair: produtos/serviços, região, público-alvo, diferenciais
-2. Gerar uma lista inicial de **30-50 termos-semente** baseados em:
-   - Categorias de produto/serviço
-   - Intenção de busca (informacional, comercial, transacional)
+1. Ler `_memoria/perfil.md` pra puxar produto/serviço, região, público, diferencial
+2. Montar uma lista de 30-50 termos-semente, cruzando:
+   - Categoria de produto/serviço
+   - Intenção (informacional, comercial, transacional)
    - Localização (cidade, região, estado)
-   - Uso final / contexto do cliente
-3. Usar **WebSearch** pra cada grupo de termos:
-   - Buscar `"[termo] site:trends.google.com"` pra ver sazonalidade
-   - Buscar `"[termo]"` pra ver o que aparece (orgânico, ads, maps)
-   - Buscar `"[termo] related searches"` pra expandir a lista
-4. Classificar cada termo por:
-   - **Volume estimado:** alto / médio / baixo / micro
-   - **Intenção:** informacional, comercial, transacional, navegacional
-   - **Dificuldade:** quantos concorrentes fortes aparecem?
-   - **Relevância:** direto (produto exato) / indireto (nicho relacionado) / tangencial
+   - Contexto de uso do cliente
+3. WebSearch por grupo de termos:
+   - `"[termo] site:trends.google.com"` pra sazonalidade
+   - `"[termo]"` puro, pra ver o que domina (orgânico, ads, maps)
+   - `"[termo] related searches"` pra expandir a lista
+4. Classificar cada termo:
+   - Volume: alto / médio / baixo / residual
+   - Intenção: informacional, comercial, transacional, navegacional
+   - Dificuldade: quantos concorrentes fortes aparecem
+   - Relevância: direta (produto exato), indireta (nicho próximo), tangencial
 
-**Output:** Salvar em `marketing/seo/01-pesquisa-demanda.md` com:
-- Tabela de termos classificados
-- Top 10 termos prioritários (volume + intenção transacional + baixa concorrência)
-- Termos sazonais
-- Termos descartados e por quê
+**Sai em** `marketing/seo/01-pesquisa-demanda.md`: tabela classificada, top 10 prioritários (volume + intenção transacional + baixa concorrência), termos sazonais, o que foi descartado e por quê.
 
 ---
 
-### Passo 2 — CONCORRÊNCIA: Quem aparece pra essas buscas?
+### Etapa 2 — CONCORRÊNCIA: quem domina o resultado
 
-**Objetivo:** Mapear quem domina os resultados e onde estão os gaps.
+**Pergunta a responder:** quem aparece pra essas buscas, e onde estão os buracos?
 
-1. Pegar os **top 10 termos** do Passo 1
-2. Pra cada termo, usar **WebSearch** e analisar:
-   - **Top 5 resultados orgânicos:** quem são, que tipo de página (site institucional, marketplace, blog, diretório)
-   - **Resultados do Maps/Local Pack:** quem aparece, quantas avaliações, nota
-   - **Google Ads:** alguém anuncia? qual a copy?
-3. Pra cada concorrente relevante (máx 5-8), usar **WebFetch** pra analisar:
+1. Pegar os top 10 termos da Etapa 1
+2. Por termo, via WebSearch:
+   - Top 5 orgânicos: quem são, que tipo de página (site, marketplace, blog, diretório)
+   - Maps/Local Pack: quem aparece, quantas avaliações, nota
+   - Alguém anuncia ali? Com que copy?
+3. Pros concorrentes mais relevantes (até 5-8), via WebFetch:
    - Estrutura do site (páginas, blog, catálogo)
-   - Meta titles e descriptions das páginas principais
-   - Conteúdo: falam de quê? com que profundidade?
-   - Schema markup: usam dados estruturados?
-   - GMB: perfil completo? fotos? posts? avaliações?
-4. Identificar:
-   - **Gaps:** o que nenhum concorrente faz bem
-   - **Oportunidades:** termos onde ninguém domina
-   - **Ameaças:** concorrentes fortes demais pra competir de frente
-   - **Benchmark:** o padrão mínimo que o negócio precisa atingir
+   - Title e description das páginas principais
+   - Profundidade do conteúdo
+   - Tem schema markup?
+   - GMB: perfil completo, fotos, posts, avaliações?
+4. Mapear:
+   - O que ninguém faz bem (gap)
+   - Termo sem dono claro (oportunidade)
+   - Concorrente forte demais pra atacar de frente (ameaça)
+   - O padrão mínimo pra competir (benchmark)
 
-**Output:** `marketing/seo/02-analise-concorrencia.md` com:
-- Tabela de concorrentes
-- Mapa de gaps e oportunidades
-- Recomendações: onde atacar primeiro
+**Sai em** `marketing/seo/02-analise-concorrencia.md`: tabela de concorrentes, mapa de gaps/oportunidades, recomendação de onde atacar primeiro.
 
 ---
 
-### Passo 3 — GMB: Google Meu Negócio (resultado mais rápido)
+### Etapa 3 — GMB: Google Meu Negócio
 
-**Objetivo:** Montar o perfil completo do Google Business Profile pra aparecer no Maps e Local Pack.
+**Pergunta a responder:** o perfil no Maps está otimizado? (é o retorno mais rápido de todos)
 
-1. Pesquisar como está o perfil atual (se existir): buscar o nome da empresa no Google
-2. Criar documento com **tudo que precisa ser preenchido/otimizado:**
+1. Buscar o nome do negócio no Google, ver o estado atual do perfil
+2. Documentar o que falta preencher ou ajustar:
 
-   **Informações básicas:**
-   - Nome (idêntico ao registrado)
-   - Categoria principal + secundárias (sugerir as melhores pro nicho)
-   - Endereço, telefone, site
-   - Horário de funcionamento
-   - Área de atendimento
+   **Básico:** nome idêntico ao registrado · categoria principal + secundárias · endereço, telefone, site · horário · área de atendimento
 
-   **Descrição do negócio:**
-   - Descrição otimizada (750 caracteres) com palavras-chave naturais
-   - Tom: conforme `_memoria/preferencias.md`
+   **Descrição:** até 750 caracteres, com palavra-chave natural, tom conforme `_memoria/preferencias.md`
 
-   **Atributos e serviços:**
-   - Serviços relevantes
-   - Atributos (entrega, atacado, produção própria, etc.)
+   **Atributos e serviços:** lista de serviços relevantes + atributos (entrega, atacado, produção própria...)
 
-   **Fotos recomendadas:**
-   - Checklist (fachada, interior, produtos, equipe, produção)
-   - Especificações
+   **Fotos:** checklist (fachada, interior, produto, equipe, processo) + especificação técnica
 
-   **Posts GMB:**
-   - 4 posts iniciais sugeridos
-   - Calendário de posts recorrentes
+   **Posts:** 4 posts iniciais + calendário recorrente
 
-   **Estratégia de avaliações:**
-   - Como pedir avaliações dos clientes atuais
-   - Template de resposta (positivas e negativas) — usar `/responder-avaliacoes`
+   **Avaliações:** como pedir pros clientes atuais + modelo de resposta (usar `/responder-avaliacoes`)
 
-   **Citações e diretórios:**
-   - Lista de diretórios relevantes pro nicho
-   - NAP consistente (Name, Address, Phone) pra todas as listagens
+   **Diretórios:** lista relevante pro nicho + NAP consistente (nome, endereço, telefone) em todos
 
-**Output:** `marketing/seo/03-google-meu-negocio.md`
+**Sai em** `marketing/seo/03-google-meu-negocio.md`
 
 ---
 
-### Passo 4 — ON-PAGE: Otimizar o site
+### Etapa 4 — ON-PAGE: o site otimizado
 
-**Objetivo:** Garantir que cada página esteja otimizada pras palavras-chave certas.
+**Pergunta a responder:** cada página está otimizada pra palavra-chave certa?
 
-1. Ler a estrutura atual do site (se `site/` existir; senão, perguntar as páginas)
-2. Pra cada página:
+1. Levantar a estrutura atual (`site/`, se existir — senão perguntar as páginas)
+2. Por página:
 
-   **Mapeamento de palavras-chave por página**
+   Palavra-chave mapeada por página
 
-   **Meta tags otimizadas:**
-   - Title (50-60 caracteres, keyword no início)
-   - Meta description (150-160 caracteres, com CTA)
-   - H1, H2, H3 sugeridos
+   **Meta tags:** title (50-60 caracteres, keyword no início) · description (150-160 caracteres, com CTA) · H1/H2/H3 sugeridos
 
-   **Schema Markup (dados estruturados):**
-   - LocalBusiness schema (JSON-LD)
-   - Product schema pros produtos
-   - FAQ schema se tiver seção de perguntas
+   **Schema (JSON-LD):** LocalBusiness · Product nos produtos · FAQ se houver seção de perguntas
 
-   **Checklist técnico:**
-   - URLs amigáveis
-   - Alt text das imagens
-   - Velocidade de carregamento
-   - Mobile-friendly
-   - Sitemap.xml, robots.txt, canonical, Open Graph
+   **Checklist técnico:** URL amigável · alt text · velocidade · mobile-friendly · sitemap.xml, robots.txt, canonical, Open Graph
 
-   **Internal linking:** mapa de links internos sugerido
+   **Linkagem interna:** mapa sugerido
 
-**Output:** `marketing/seo/04-otimizacao-on-page.md` com:
-- Tabela: página → keyword principal → title → description → H1
-- Schema markup pronto pra copiar (JSON-LD)
-- Checklist técnico com status (feito / pendente)
+**Sai em** `marketing/seo/04-otimizacao-on-page.md`: tabela página → keyword → title → description → H1, schema pronto pra copiar, checklist com status.
 
 ---
 
-### Passo 5 — CONTEÚDO: Estratégia de autoridade
+### Etapa 5 — CONTEÚDO: construir autoridade
 
-**Objetivo:** Criar plano de conteúdo que posicione a empresa como referência no nicho.
+**Pergunta a responder:** o que publicar pra virar referência no nicho?
 
-1. Baseado nos termos do Passo 1 (especialmente os informacionais):
+1. A partir dos termos informacionais da Etapa 1:
 
-   **Páginas/posts evergreen:**
-   - 5-10 ideias que respondem dúvidas reais do público
-   - Pra cada ideia: título otimizado, keyword-alvo, estrutura de headings, estimativa de tamanho
+   **Pautas evergreen:** 5-10 ideias que respondem dúvida real, cada uma com título, keyword-alvo, estrutura de heading, tamanho estimado
 
-   **Cluster de conteúdo:**
-   - Página pilar
-   - Páginas satélite que linkam pra pilar
-   - Estrutura de internal linking
+   **Cluster:** página pilar + páginas satélite linkando pra ela
 
-   **Calendário editorial:**
-   - Prioridade de publicação
-   - Frequência sugerida
-   - Formato (blog post, guia, FAQ, comparativo)
+   **Calendário:** prioridade, frequência, formato (post, guia, FAQ, comparativo)
 
-   **Conteúdo local:**
-   - Páginas de área de atendimento (se fizer sentido)
-   - Conteúdo com referências locais
+   **Conteúdo local, se fizer sentido:** páginas por área de atendimento, referência geográfica no texto
 
-**Output:** `marketing/seo/05-estrategia-conteudo.md`
+**Sai em** `marketing/seo/05-estrategia-conteudo.md`
 
-> Essa lista é o insumo da skill `/publicar-tema` — cada item dessa estratégia vira artigo + carrossel + legendas com um único comando.
+> Essa lista alimenta o `/publicar-tema` — cada pauta vira artigo + carrossel + legendas num comando só.
 
 ---
 
-### Passo 6 — GOOGLE ADS: Campanhas prontas pra rodar
+### Etapa 6 — GOOGLE ADS: campanha pronta
 
-**Objetivo:** Estruturar campanhas baseadas nos dados reais da pesquisa.
+**Pergunta a responder:** como estruturar a campanha com os dados já levantados?
 
-1. Definir **objetivo das campanhas:**
-   - Geração de leads (ligações, WhatsApp, formulário)
-   - Visitas ao site
-   - Alcance local
+1. Objetivo: lead (ligação, WhatsApp, formulário), visita ao site, ou alcance local
+2. Estrutura:
 
-2. **Estrutura de campanhas:**
+   **Search:** um grupo por cluster · 10-15 keywords + negativas + 3 RSAs + extensões por grupo · orçamento, lance, geolocalização
 
-   **Search:**
-   - Grupos de anúncios (1 por cluster de keyword)
-   - Pra cada grupo: 10-15 palavras-chave, lista de negativas, 3 RSAs, extensões
-   - Orçamento diário, estratégia de lance, segmentação geográfica
+   **Local, se aplicável:** anúncio pro Maps, segmentação por proximidade
 
-   **Local (se aplicável):** anúncios pra Google Maps, segmentação por proximidade
+   **Display/Remarketing (opcional):** público e formato
 
-   **Display/Remarketing (opcional):** públicos, formatos
+3. Copy: tom de `_memoria/preferencias.md`, diferencial real, CTA específico, 15 headlines + 4 descriptions
+4. Landing page: o site atual serve, ou precisa de uma página dedicada?
 
-3. **Copies dos anúncios:**
-   - Seguir tom de `_memoria/preferencias.md`
-   - Incluir diferenciais concretos
-   - CTAs específicos
-   - 15 headlines, 4 descriptions
+**Sai em** `marketing/seo/06-google-ads.md`: estrutura completa, keywords organizadas, copy pronta, orçamento e configuração.
 
-4. **Landing page:** avaliar se o site atual serve ou precisa de página específica
-
-**Output:** `marketing/seo/06-google-ads.md` com estrutura completa, palavras-chave organizadas, copies prontas, orçamento e configurações.
-
-> A skill `/anuncio-google` consome esse arquivo e gera o CSV pronto pra importar no Google Ads.
+> O `/anuncio-google` lê esse arquivo e gera o CSV pronto pra importar.
 
 ---
 
-### Passo 7 — MONITORAMENTO: Checklist mensal
+### Etapa 7 — MONITORAMENTO: manter o resultado
 
-**Objetivo:** Garantir que o trabalho continue dando resultado.
+**Pergunta a responder:** o trabalho continua rendendo depois de feito?
 
-**Semanal:**
-- Posição nos top 10 termos
-- Responder avaliações no GMB
-- Postar no GMB (1x/semana mínimo)
+**Toda semana:** posição nos top 10 termos · responder avaliação no GMB · postar no GMB pelo menos 1x
 
-**Mensal:**
-- Revisar métricas do Google Ads (CTR, CPC, conversões, custo/lead) — usar `/relatorio-ads`
-- Verificar tráfego orgânico (Google Search Console)
-- Atualizar palavras-chave negativas
-- Publicar 1-2 conteúdos do calendário editorial
-- Verificar citações/diretórios
+**Todo mês:** revisar Google Ads (CTR, CPC, conversão, custo/lead — usar `/relatorio-ads`) · tráfego orgânico no Search Console · atualizar negativas · publicar 1-2 pautas do calendário · checar diretórios/citações
 
-**Trimestral:**
-- Refazer pesquisa de concorrência (Passo 2 resumido)
-- Atualizar fotos e posts do GMB
-- Revisar estratégia de conteúdo
-- Avaliar novas oportunidades de keywords
+**A cada trimestre:** repetir a Etapa 2 de forma resumida · atualizar fotos/posts do GMB · revisar a estratégia de conteúdo · olhar novas oportunidades de keyword
 
-**Output:** `marketing/seo/07-checklist-monitoramento.md`
+**Sai em** `marketing/seo/07-checklist-monitoramento.md`
 
 ---
 
-### Passo 8 — GEO: Aparecer nas respostas de IAs
+### Etapa 8 — GEO: aparecer quando alguém pergunta pra uma IA
 
-**Objetivo:** Otimizar a presença pra que IAs generativas (ChatGPT, Gemini, Perplexity, Copilot) citem a empresa quando alguém perguntar sobre o nicho.
+**Pergunta a responder:** quando o cliente pergunta pro ChatGPT/Gemini/Perplexity "qual o melhor X em Y", o negócio aparece?
 
-**Por que importa:** Cada vez mais clientes perguntam pra IAs "qual o melhor fornecedor/serviço de X em Y?" — quem aparece ganha lead qualificado sem pagar ads.
+**Por que importa:** cada vez mais gente pergunta pra IA antes de buscar no Google — quem aparece ali ganha lead qualificado sem pagar ads.
 
-1. **Auditoria GEO:**
-   - WebSearch nos top 10 termos em engines de IA (Perplexity, etc.)
-   - Verificar se a empresa (ou concorrentes) aparece
-   - Mapear quais fontes as IAs citam pra esse nicho
+1. **Auditoria:** WebSearch dos top 10 termos em engines de IA, ver se o negócio (ou concorrente) aparece, mapear que fontes a IA cita pro nicho
+2. **Conteúdo pensado pra IA:** cada pauta da Etapa 5 responde direto nas primeiras linhas, com dado concreto (número, certificação, endereço, fato verificável), estruturado em formato pergunta/resposta (H2/H3), nunca vago — IA descarta texto genérico
+3. **FAQ com schema:** seção de perguntas reais do nicho + FAQPage (JSON-LD), 5-10 perguntas baseadas no que o público pergunta de fato
+4. **Menção externa:** IA pesa citação em fonte confiável — diretório, site de avaliação, guest post, menção em blog do nicho, aparição em mídia
+5. **Schema reforçado:** LocalBusiness, FAQPage, Product, Article
+6. **Monitorar:** a cada 30 dias, testar os top 5 termos no ChatGPT/Gemini/Perplexity, registrar se apareceu, quem apareceu, qual fonte foi citada, ajustar o conteúdo conforme o resultado
 
-2. **Conteúdo otimizado pra IA:**
-   - Cada artigo do Passo 5 deve ter **respostas diretas** nas primeiras linhas
-   - Incluir **dados concretos** (números, certificações, endereços, fatos verificáveis)
-   - Estruturar com **perguntas como H2/H3** (formato Q&A)
-   - Evitar texto vago — IAs descartam genérico
-
-3. **FAQ Schema no site:**
-   - Seção de FAQ com perguntas reais do nicho
-   - Implementar FAQPage schema (JSON-LD)
-   - 5-10 perguntas sugeridas baseadas no que o público pergunta
-
-4. **Citações externas (menções):**
-   - As IAs pesam menções em fontes confiáveis
-   - Ações: diretórios, sites de avaliação, guest posts, menções em blogs do nicho, aparições em mídia
-
-5. **Dados estruturados reforçados:**
-   - LocalBusiness, FAQPage, Product, Article schemas
-
-6. **Monitoramento GEO:**
-   - A cada 30 dias, testar os top 5 termos no ChatGPT, Gemini, Perplexity
-   - Registrar: a empresa apareceu? quem apareceu? fonte citada?
-   - Ajustar conteúdo com base nos resultados
-
-**Output:** `marketing/seo/08-geo-otimizacao-ia.md` com auditoria, FAQ + schema JSON-LD, lista de ações pra aumentar citações, checklist de monitoramento.
+**Sai em** `marketing/seo/08-geo-otimizacao-ia.md`: auditoria, FAQ + schema, lista de ações pra ganhar citação, checklist de monitoramento.
 
 ---
 
-## Execução
+## Rodando o ciclo
 
-Ao rodar `/seo`, executar **todos os 8 passos em sequência**, salvando cada output no arquivo correspondente. Entre cada passo, mostrar resumo do que foi encontrado antes de seguir.
+`/seo` sem mais nada: rodar as 8 etapas em sequência, salvando cada saída no arquivo correspondente, com um resumo entre uma etapa e outra antes de seguir.
 
-Se o usuário quiser rodar apenas um passo: `/seo passo 3` ou `/seo gmb` ou `/seo geo`.
+Só uma etapa: `/seo passo 3` ou `/seo gmb` ou `/seo geo`.
 
-Ao finalizar, apresentar **resumo executivo** com:
-- Top 5 oportunidades encontradas
-- Ações prioritárias (o que fazer primeiro)
-- Estimativa de investimento em ads
-- Próximos passos recomendados
+No final, resumo executivo com: top 5 oportunidades, ação prioritária, estimativa de investimento em ads, próximos passos.
 
 ---
 
 ## Regras
 
-- Toda pesquisa deve ser real (usar WebSearch/WebFetch), nunca inventar dados de volume ou concorrência
-- Copies e textos seguem `_memoria/preferencias.md` estritamente
-- Termos em português do Brasil, como o público busca
-- Quando um dado não puder ser obtido (ex: volume exato), deixar claro que é estimativa e explicar a lógica
-- Focar em termos com intenção comercial/transacional pra negócio B2C/B2B local
-- Schema markup em formato JSON-LD (padrão Google)
-- Google Ads: nunca inventar CPC ou estimativas de custo sem base real
+- Pesquisa sempre real (WebSearch/WebFetch) — nunca inventar volume ou dado de concorrência
+- Copy e texto seguem `_memoria/preferencias.md` à risca
+- Termos em português do Brasil, como o público realmente busca
+- Dado que não dá pra confirmar: declarar que é estimativa e explicar a lógica usada
+- Foco em intenção comercial/transacional pro negócio local (B2B ou B2C)
+- Schema sempre em JSON-LD
+- Nunca inventar CPC ou estimativa de custo de ads sem base real

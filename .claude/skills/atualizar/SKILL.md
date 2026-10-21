@@ -1,53 +1,51 @@
 ---
 name: atualizar
 description: >
-  Varre a pasta pessoal e atualiza os arquivos de contexto (`_memoria/perfil.md`, `preferencias.md`,
-  `foco.md`, `CLAUDE.md`) que ficaram desatualizados em relação ao estado real. Use quando o
+  Compara os arquivos de contexto (`_memoria/perfil.md`, `preferencias.md`, `foco.md`,
+  `CLAUDE.md`) com o estado real da pasta e corrige o que ficou pra trás. Use quando o
   usuário disser "atualiza", "/atualizar", "varre o projeto", ou pedir uma reconciliação geral.
 ---
 
-# /atualizar — Varredura e atualização de contexto
+# /atualizar — Reconciliar memória com a realidade
 
-Compara o que está nos arquivos de contexto com o estado real do workspace e propõe atualizações.
+A memória só serve se continuar batendo com o que você realmente está fazendo. Essa skill audita isso.
 
 ## Workflow
 
-### Passo 1 — Levantamento
+### Passo 1 — Olhar o que existe hoje
 
-Listar:
-- Pastas na raiz (cada uma representa uma área pessoal ou de projeto)
-- Skills em `.claude/skills/` — quais existem hoje
-- Arquivos recentes (últimos 30 dias) que sugiram mudança de contexto
+Levantar:
+- As pastas na raiz (cada uma é uma área de vida ou projeto)
+- As skills instaladas em `.claude/skills/`
+- Arquivos criados/alterados nos últimos 30 dias que indiquem mudança de rumo
 
-### Passo 2 — Comparação
+### Passo 2 — Confrontar com a memória
 
-Ler os arquivos de contexto e identificar:
+Pra cada arquivo de contexto, perguntar se ainda reflete a realidade:
 
-- **Em `_memoria/perfil.md`:** o contexto de vida/negócio ainda bate com a realidade?
-- **Em `_memoria/foco.md`:** o foco atual ainda faz sentido (datas, prioridades)?
-- **Em `CLAUDE.md`:** as regras batem com o que existe?
-- **Em `identidade/design-guide.md`:** continua coerente com o que foi gerado nas últimas peças (carrosséis, slides)?
+- `_memoria/perfil.md` ainda descreve seu momento atual?
+- `_memoria/foco.md` ainda tem datas e prioridades válidas?
+- `CLAUDE.md` ainda bate com o que de fato existe na pasta?
+- `identidade/design-guide.md` ainda é coerente com as últimas peças geradas?
 
-### Passo 3 — Proposta de mudanças
-
-Apresentar pro usuário uma lista curta no formato:
+### Passo 3 — Propor, não aplicar direto
 
 ```
-Encontrei [N] coisas pra atualizar:
+Achei [N] pontos fora de sincronia:
 
 1. _memoria/perfil.md — ...
 2. _memoria/foco.md — ...
 
-Quer que eu aplique essas mudanças? Posso aplicar todas, escolher algumas, ou nenhuma.
+Aplico tudo, só uma parte, ou nenhuma?
 ```
 
-### Passo 4 — Aplicação
+### Passo 4 — Aplicar com cirurgia
 
-Se o usuário aprovar, editar os arquivos com cirurgia — só a linha relevante, sem reformatar o documento todo. Mostrar o diff de cada mudança aplicada.
+Só editar a linha que mudou, nunca reescrever o arquivo inteiro. Mostrar o que mudou em cada arquivo tocado.
 
 ## Regras
 
-- Não inventar fatos — só registrar o que tem evidência no workspace
-- Se a evidência for ambígua, perguntar antes de adicionar
-- Não apagar conteúdo dos arquivos de contexto — só atualizar e adicionar
-- Se nenhuma mudança for necessária, responder "Tá tudo coerente, nada pra atualizar"
+- Nada de inventar: só entra o que tem evidência real na pasta
+- Evidência ambígua → perguntar antes de escrever
+- Atualizar e somar, nunca apagar conteúdo existente
+- Sem nada pra ajustar → "Tá tudo batendo, nada pra mudar"

@@ -1,41 +1,37 @@
 ---
 name: abrir
 description: >
-  Abre uma sessão de trabalho carregando o contexto pessoal (perfil, preferências, foco)
-  e devolve um resumo curto pro usuário. Use quando o usuário disser "abrir",
-  "começar o dia", "/abrir" ou no primeiro turno de uma sessão.
+  Carrega o contexto pessoal (perfil, preferências, foco) no início de uma sessão e devolve
+  uma síntese curta pro usuário. Use quando o usuário disser "abrir", "começar o dia",
+  "/abrir" ou for o primeiro turno de uma sessão.
 ---
 
-# /abrir — Abertura de sessão
+# /abrir — Começo de sessão
 
-Curto e direto. O objetivo é carregar contexto e devolver uma síntese de uma frase pra o usuário começar.
+Objetivo único: carregar o contexto e devolver uma frase de situação antes de qualquer trabalho.
 
 ## Workflow
 
-1. Ler, em ordem:
-   - `_memoria/perfil.md`
-   - `_memoria/preferencias.md`
-   - `_memoria/foco.md`
-   - `identidade/design-guide.md` (só pra saber se está preenchido ou em branco)
+1. Ler, nessa ordem: `_memoria/perfil.md`, `_memoria/preferencias.md`, `_memoria/foco.md`, e dar uma olhada em `identidade/design-guide.md` só pra saber se tem conteúdo ou tá vazio.
 
-2. Se algum dos três estiver em branco (placeholder), responder:
-   > "Vi que `_memoria/<arquivo>.md` ainda não foi preenchido. Quer completar agora?"
-   E parar.
+2. Se `perfil.md`, `preferencias.md` ou `foco.md` ainda estiver com o placeholder original, responder:
+   > "`_memoria/<arquivo>.md` ainda tá vazio. Completa agora antes de seguir?"
+   E esperar.
 
-3. Se tudo estiver preenchido, devolver UMA mensagem curta no formato:
+3. Com tudo preenchido, devolver uma única mensagem curta:
 
 ```
-[Nome] — [contexto de vida/negócio em 5-8 palavras]
-Foco atual: [prioridade de foco.md, em uma frase]
-Tom: [resumo de 3-4 palavras do tom de voz]
+[Nome] — [resumo de vida/negócio em poucas palavras]
+Foco: [a prioridade que está em foco.md, resumida numa linha]
+Tom: [3-4 palavras que descrevem como escrever]
 
-Pronto. O que vamos fazer?
+Beleza, o que fazemos agora?
 ```
 
-4. Não listar quais arquivos foram lidos. Não confirmar leitura. Só usar o contexto.
+4. Não narrar o que foi lido, não pedir confirmação de leitura. Só chegar já sabendo.
 
 ## Regras
 
-- Resposta tem que caber em 5 linhas no terminal
-- Não fazer perguntas além de "o que vamos fazer?"
-- Se o `design-guide.md` estiver em branco, não mencionar — só vira problema quando alguma skill visual for chamada
+- A resposta cabe em poucas linhas, sem rodeio
+- A única pergunta permitida é o "o que fazemos agora"
+- `design-guide.md` vazio não entra nesse resumo — só vira assunto quando uma skill visual precisar dele

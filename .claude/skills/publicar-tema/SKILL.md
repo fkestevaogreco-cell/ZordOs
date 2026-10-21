@@ -1,65 +1,61 @@
 ﻿---
 name: publicar-tema
 description: >
-  Orquestra a criação completa de uma peça de conteúdo SEO + redes sociais a partir de um tema.
-  Pega um tema (manual ou da estratégia de conteúdo do SEO), escreve o artigo de blog completo,
-  gera o carrossel resumo via skill /carrossel, e produz as legendas pra Instagram, Facebook e
-  LinkedIn — tudo amarrado, com o carrossel apontando pro blog.
-  Use quando o usuário pedir "publicar tema", "gera o conteúdo do tema X", "transforma esse tema
-  em post", "cria o conteúdo completo", ou /publicar-tema.
+  Pega um tema (escolhido ou tirado da estratégia de conteúdo do SEO) e entrega o pacote
+  completo: artigo de blog, carrossel-resumo (via `/carrossel`) e legendas pra Instagram,
+  Facebook e LinkedIn, tudo linkado entre si. Use quando o usuário pedir "publicar tema",
+  "gera o conteúdo do tema X", "transforma esse tema em post", "cria o conteúdo completo",
+  ou /publicar-tema.
 ---
 
-# /publicar-tema — Pipeline de conteúdo SEO + redes sociais
+# /publicar-tema — De um tema ao pacote de conteúdo completo
 
-Skill orquestradora. Pega um tema → entrega artigo no blog + carrossel + 3 legendas (Insta, FB, LinkedIn), tudo conectado.
+Skill orquestradora: um tema entra, saem o artigo, o carrossel e três legendas, todos conectados entre si.
 
 ## Dependências
 
-- **Estratégia de conteúdo:** `marketing/seo/05-estrategia-conteudo.md` (lista mestra de temas, criada pelo `/seo`)
-- **Outras pesquisas SEO:** `marketing/seo/01-pesquisa-demanda.md`, `02-analise-concorrencia.md`, `08-geo-otimizacao-ia.md`
-- **Skill carrossel:** `.claude/skills/carrossel/SKILL.md` — usar pra fase do carrossel
-- **Site (blog):** `site/` — destino dos artigos. Estrutura comum: Astro em `site/astro-site/src/content/blog/`, ou WordPress, ou outro. Se ainda não tiver site, perguntar antes
-- **Tom de voz:** `_memoria/preferencias.md`
+- **Lista mestra de temas:** `marketing/seo/05-estrategia-conteudo.md` (produzida pelo `/seo`)
+- **Pesquisas de apoio:** `marketing/seo/01-pesquisa-demanda.md`, `02-analise-concorrencia.md`, `08-geo-otimizacao-ia.md`
+- **Carrossel:** chama `.claude/skills/carrossel/SKILL.md` na fase certa
+- **Blog:** pasta `site/` — formato varia (Astro em `site/astro-site/src/content/blog/`, WordPress, outro). Sem site ainda, perguntar antes de seguir
+- **Tom:** `_memoria/preferencias.md`
 - **Contexto:** `_memoria/perfil.md`, `identidade/design-guide.md`
 
 ---
 
 ## Workflow
 
-### Passo 0 — Escolher o tema
+### Passo 0 — Qual tema
 
-Se o usuário passou um tema explícito → usar.
+Tema já veio explícito → usa direto.
 
-Se não passou nada → ler `marketing/seo/05-estrategia-conteudo.md`, listar os artigos satélite + a página pilar, e perguntar:
+Nada veio → ler `marketing/seo/05-estrategia-conteudo.md`, listar página pilar + satélites, perguntar:
+> "Qual desses tá na fila?"
 
-> "Qual tema da estratégia? (lista de opções)"
+Checar antes quais já viraram post (olhar a pasta do blog) pra não duplicar.
 
-Marcar mentalmente quais já viraram blog (checar pasta do blog) pra não duplicar.
+### Passo 1 — Pesquisa rápida antes de escrever
 
-### Passo 1 — Pesquisa rápida
+- Keyword principal e variações: `01-pesquisa-demanda.md`
+- Como a concorrência trata o assunto: `02-analise-concorrencia.md` — serve pra fugir do óbvio
+- Ângulo pra IA generativa, se fizer sentido: `08-geo-otimizacao-ia.md`
 
-Antes de escrever, ler o que tem nas pesquisas SEO sobre esse tema:
-- Keyword principal e variações (`01-pesquisa-demanda.md`)
-- Como concorrentes tratam (`02-analise-concorrencia.md`) — pra fugir do óbvio
-- Ângulo GEO se aplicável (`08-geo-otimizacao-ia.md`) — perguntas que IAs respondem
+### Passo 2 — O artigo
 
-### Passo 2 — Escrever o blog post
-
-**Destino:** depende do stack do site. Padrões comuns:
+**Destino conforme o stack do site:**
 - Astro: `site/astro-site/src/content/blog/<slug>.md`
-- WordPress: gerar markdown que o usuário cola no editor
-- Outro: confirmar com o usuário
+- WordPress: markdown pronto pro usuário colar no editor
+- Outro stack: perguntar
 
-**Slug:** kebab-case curto, sem stopwords. Ex: "Como conservar carne salgada no restaurante" → `conservar-carne-salgada`.
+**Slug:** kebab-case, curto, sem stopword. "Como conservar carne salgada no restaurante" → `conservar-carne-salgada`.
 
-**Frontmatter (se o stack usa markdown com frontmatter):**
-
+**Frontmatter (quando o stack usa markdown):**
 ```yaml
 ---
-title: "Título atrativo, próximo da keyword"
-description: "Meta description 150-160 caracteres, com keyword e benefício pro leitor"
+title: "Título que puxa pra keyword, mas não robótico"
+description: "150-160 caracteres, keyword + benefício pro leitor"
 publishedAt: YYYY-MM-DD
-author: "<nome configurado em _memoria/perfil.md>"
+author: "<nome de _memoria/perfil.md>"
 keywords:
   - keyword principal
   - variação 1
@@ -68,87 +64,80 @@ draft: true
 ---
 ```
 
-**Sempre começar com `draft: true`.** O usuário revisa e flipa pra `false` quando aprovar.
+**Sempre nasce como `draft: true`.** Vira `false` só quando o usuário aprovar.
 
-**Estrutura do artigo (800-1500 palavras):**
+**Esqueleto do artigo (800-1500 palavras):**
+1. Abertura (1-2 parágrafos) com o problema real, sem enrolar
+2. H2 explicando o quê e o porquê
+3. H2 prático — como fazer, o que observar
+4. H2 opcional de comparação ou detalhe técnico
+5. H2 conectando com o que o negócio oferece, sem virar anúncio
+6. CTA final (WhatsApp, formulário, contato)
 
-1. **Lead (1-2 parágrafos):** problema concreto do público, sem enrolação
-2. **H2 explicativo:** o quê e por quê
-3. **H2 prático:** como fazer / o que olhar
-4. **H2 comparativo ou de detalhe técnico** (opcional)
-5. **H2 onde a empresa se encaixa:** conexão natural com o produto, sem ser propaganda
-6. **CTA final:** link WhatsApp / formulário / contato configurado
+**Regras de escrita** (`_memoria/preferencias.md` manda):
+- Sem inglês de marketing que o público não usa
+- Frase curta, parágrafo de 2-4 linhas
+- Concreto sempre que der: número, data, certificação
+- Markdown limpo (`##`/`###`, listas com `-`, link em `[texto](url)`)
 
-**Regras de escrita** (seguir `_memoria/preferencias.md` estritamente):
-- Sem jargão de marketing/inglês quando o público não usa
-- Frases curtas, parágrafos de 2-4 linhas
-- Concreto: números, certificações, datas, valores quando souber
-- Markdown limpo: `##` pra H2, `###` pra H3, listas com `-`, links em `[texto](url)`
+### Passo 3 — O carrossel-resumo
 
-### Passo 3 — Carrossel resumo
-
-**Sem perguntar, partir direto pra criação do carrossel** chamando `.claude/skills/carrossel/SKILL.md` (tipo 1: carrossel texto puro).
+**Sem pedir permissão**, chamar `.claude/skills/carrossel/SKILL.md` (carrossel texto puro).
 
 **Pasta:** `marketing/conteudo/<slug-do-blog>-<YYYY-MM-DD>/`
 
-Estrutura de slides do resumo:
-- **Slide 1 — capa:** mesmo título do blog (ou variação enxuta)
-- **Slides 2-6:** os pontos-chave do blog (1 ideia por slide, frase natural, não bullet seco)
-- **Slide final — CTA pro blog:** "Texto completo no nosso blog" + URL `<dominio>/blog/<slug>`
+- Capa: título do blog ou variação mais curta
+- Slides do meio: um ponto-chave do artigo por slide, frase natural (não bullet seco)
+- Último slide: CTA pro blog, com a URL `<dominio>/blog/<slug>`
 
-**Capa:** seguir sequência alternada do feed (claro → foto/escuro → cor principal → repete) — checar `marketing/conteudo/` mais recente.
+Capa: respeitar a sequência alternada do feed (checar a última pasta criada em `marketing/conteudo/`).
 
-### Passo 4 — Legendas (3 versões)
+### Passo 4 — As três legendas
 
-Salvar todas em `marketing/conteudo/<pasta-do-carrossel>/`:
+Tudo em `marketing/conteudo/<pasta-do-carrossel>/`:
 
-**`legenda.md`** (Instagram + Facebook — mesmo texto):
+**`legenda.md`** (Instagram + Facebook, mesmo texto):
 - Hook na primeira linha
-- 2-3 parágrafos de contexto (frases naturais, sem corporativês)
-- CTA pro carrossel ("Arraste pro lado") + CTA pro blog ("Texto completo no link da bio" ou URL direta)
-- Bloco oferta da empresa (diferenciais, contato)
-- 10-15 hashtags (público + nicho + local)
+- 2-3 parágrafos de contexto, frase natural
+- CTA pro carrossel + CTA pro blog (link na bio ou URL direta)
+- Diferenciais + contato
+- 10-15 hashtags (público, nicho, local)
 
-**`legenda-linkedin.md`** (LinkedIn — mais formal, sem hashtags):
-- Hook (pode ser provocativo, profissional)
-- 3-5 parágrafos analíticos — LinkedIn aceita texto longo
-- Sem "arraste pro lado" (público diferente, comportamento diferente)
+**`legenda-linkedin.md`** (mais formal, sem hashtag em excesso):
+- Hook mais analítico
+- 3-5 parágrafos, texto longo é aceito ali
+- Sem "arraste pro lado" — comportamento de feed diferente
 - CTA: link direto pro blog
-- Sem bloco de oferta agressivo — fechar com 1 linha de quem é a empresa
-- Máx 3 hashtags no final, do nicho profissional
+- Fecha com uma linha de quem é, sem oferta forçada
+- No máximo 3 hashtags de nicho profissional
 
-### Passo 5 — Resumo de entrega
-
-No fim, mostrar pro usuário uma lista clara:
+### Passo 5 — Fechar com checklist
 
 ```
-✓ Blog post: <caminho>/<slug>.md (draft)
-✓ Carrossel: marketing/conteudo/<pasta>/
-  - carrossel.html + render.js
-  - PNGs em instagram/
-✓ Legendas:
-  - legenda.md (Insta + FB)
-  - legenda-linkedin.md
+✓ Blog: <caminho>/<slug>.md (draft)
+✓ Carrossel: marketing/conteudo/<pasta>/ (carrossel.html + render.js + PNGs)
+✓ legenda.md (Insta + FB)
+✓ legenda-linkedin.md
 
 Pra publicar:
-1. Revisar o blog → flipar draft: false
-2. Rebuild do site (se Astro/Hugo/etc) ou copiar pro CMS
-3. Renderizar PNGs do carrossel: cd marketing/conteudo/<pasta> && node render.js
-4. Postar carrossel no Insta + FB com legenda.md (ou usar /aprovar-post)
-5. Postar texto + link no LinkedIn com legenda-linkedin.md
+1. Revisar o blog → draft: false
+2. Rebuild do site ou colar no CMS
+3. cd marketing/conteudo/<pasta> && node render.js
+4. Postar Insta + FB com legenda.md (ou usar /aprovar-post)
+5. Postar LinkedIn com legenda-linkedin.md
 ```
 
 ---
 
-## Quando NÃO usar essa skill
+## Quando essa skill não é a certa
 
-- Pedido de carrossel avulso (sem blog) → usar `/carrossel` direto
-- Atualização de artigo existente → editar direto o .md
-- Post único, frase de impacto → `/carrossel`
+- Carrossel avulso sem blog por trás → `/carrossel` direto
+- Só atualizar um artigo que já existe → editar o `.md` na mão
+- Frase de impacto isolada → `/carrossel`
 
 ## Princípios
 
-1. **Blog é a peça-mãe.** Carrossel e legendas são derivados dele, não o contrário.
-2. **Tudo conectado.** Cada peça referencia a outra (carrossel linka pro blog, blog tem CTA pro contato).
-3. **Draft sempre.** Nunca publicar automaticamente — usuário revisa antes (ou usa `/aprovar-post`).
-4. **Linguagem do público real.** Sem corporativês. Sempre.
+1. O artigo é a peça-mãe — carrossel e legendas derivam dele, nunca o contrário
+2. Tudo aponta pra tudo: carrossel linka blog, blog tem CTA de contato
+3. Nasce sempre em draft — ninguém publica sozinho sem revisão (ou via `/aprovar-post`)
+4. Linguagem de gente de verdade, sem corporativês

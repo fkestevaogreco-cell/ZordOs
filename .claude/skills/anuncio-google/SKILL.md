@@ -1,24 +1,24 @@
 ﻿---
 name: anuncio-google
 description: >
-  Cria estrutura completa de campanha do Google Ads a partir de um briefing ou da pesquisa SEO.
-  Gera CSV pronto pra importar no Google Ads Editor com campanhas Search organizadas por cluster
-  de palavras-chave, grupos de anúncios, RSAs (Responsive Search Ads), extensões e palavras-chave
-  negativas. Lê o briefing de _memoria/perfil.md e da pesquisa SEO se existir.
-  Use quando o usuário pedir "criar campanha google ads", "anúncio google", "google ads",
-  "csv pro google ads", ou /anuncio-google.
+  Monta a estrutura inteira de uma campanha do Google Ads a partir de um briefing ou da
+  pesquisa de SEO, e entrega em CSV pronto pra importar no Google Ads Editor: campanhas,
+  grupos por cluster de palavra-chave, RSAs, extensões e negativas. Lê o briefing de
+  `_memoria/perfil.md` e, se existir, da pesquisa de SEO. Use quando o usuário pedir
+  "criar campanha google ads", "anúncio google", "google ads", "csv pro google ads",
+  ou /anuncio-google.
 ---
 
-# /anuncio-google — Estrutura de campanha Google Ads
+# /anuncio-google — Campanha pronta pro Google Ads Editor
 
-Skill que monta a campanha inteira em CSV pronto pra importar no Google Ads Editor. Sai do briefing direto pro CSV — sem montar grupo por grupo na mão na interface do Google.
+Do briefing direto pro CSV — sem montar grupo por grupo na interface do Google.
 
 ## Dependências
 
-- **Contexto do negócio:** `_memoria/perfil.md` (produto/serviço, público, região, diferenciais)
-- **Tom de voz:** `_memoria/preferencias.md`
-- **Pesquisa SEO (se existir):** `marketing/seo/01-pesquisa-demanda.md`, `06-google-ads.md` — usar como insumo
-- **Outputs vão em:** `marketing/campanhas/google-ads-<YYYY-MM-DD>/`
+- **Contexto:** `_memoria/perfil.md` (produto, público, região, diferenciais)
+- **Tom:** `_memoria/preferencias.md`
+- **Pesquisa de SEO, se existir:** `marketing/seo/01-pesquisa-demanda.md`, `06-google-ads.md`
+- **Saída:** `marketing/campanhas/google-ads-<YYYY-MM-DD>/`
 
 ---
 
@@ -26,149 +26,134 @@ Skill que monta a campanha inteira em CSV pronto pra importar no Google Ads Edit
 
 ### Passo 1 — Briefing
 
-Se o usuário não passou briefing, perguntar:
+Sem briefing pronto, perguntar:
 
-1. **Produto/serviço a anunciar?** (1-3 linhas)
-2. **Quem é o público?** (perfil, dor que resolve)
-3. **Região:** raio em km a partir de qual cidade?
-4. **Orçamento diário?** (R$/dia)
-5. **Objetivo:** ligações / WhatsApp / formulário / visita?
-6. **Site/landing page** existe? URL?
+1. O que vai anunciar (1-3 linhas)
+2. Quem é o público (perfil, dor que resolve)
+3. Raio de atendimento e cidade-base
+4. Orçamento diário
+5. Objetivo (ligação, WhatsApp, formulário, visita física)
+6. Site ou landing page já existe? Qual URL?
 
-Se já existe `marketing/seo/06-google-ads.md` (criado pelo `/seo`), usar como base — pular as perguntas que já foram respondidas lá.
+Já existindo `marketing/seo/06-google-ads.md` (saída do `/seo`): usar como base, pular o que já estiver respondido.
 
-### Passo 2 — Pesquisa de palavras-chave
+### Passo 2 — Palavras-chave
 
-Se já existe `marketing/seo/01-pesquisa-demanda.md`, usar o top 10-20 de termos prioritários (intenção transacional + comercial).
+Com `marketing/seo/01-pesquisa-demanda.md` pronto: usar os 10-20 termos prioritários (intenção comercial/transacional).
 
-Se não existe, gerar:
-- 30-50 termos-semente baseados no briefing
-- WebSearch pra cada grupo: ver concorrência, sazonalidade
-- Filtrar pelos de **intenção comercial/transacional** (descartar informacionais)
-- Agrupar em **clusters** (ex: "feijoada-buffet", "feijoada-restaurante", "feijoada-evento")
+Sem pesquisa prévia:
+- Gerar 30-50 termos-semente a partir do briefing
+- WebSearch por grupo pra ver concorrência e sazonalidade
+- Ficar só com intenção comercial/transacional (informacional fica pra SEO orgânico)
+- Agrupar em clusters (ex.: "feijoada-buffet", "feijoada-restaurante", "feijoada-evento")
 
-### Passo 3 — Estrutura de campanha
+### Passo 3 — Estrutura
 
-**Padrão recomendado pra B2B local:**
+**Padrão pra negócio local:**
 
 ```
 Campanha 1: <Negócio> — Search Geral
 ├── Grupo: <Cluster 1>
-│   ├── 10-15 keywords (mix de exata, frase, ampla modificada)
+│   ├── 10-15 keywords (exata + frase + ampla modificada)
 │   ├── 3 RSAs (15 headlines + 4 descriptions cada)
-│   └── 10-15 keywords negativas no grupo
+│   └── 10-15 negativas no grupo
 ├── Grupo: <Cluster 2>
 │   └── ...
-└── ... (1 grupo por cluster do Passo 2)
+└── (um grupo por cluster)
 
 Campanha 2: <Negócio> — Local (opcional)
-├── Anúncios pra Google Maps
+├── Anúncios pro Maps
 └── Segmentação por proximidade
 
-Lista de negativas globais: termos genéricos descartados, marcas concorrentes
+Negativas globais: termos genéricos fora do escopo + marcas concorrentes
 ```
 
-### Passo 4 — Copies (RSAs)
+### Passo 4 — Os anúncios (RSAs)
 
-Pra cada grupo, gerar 3 RSAs (Responsive Search Ads):
+3 RSAs por grupo:
 
-**15 headlines** por anúncio:
-- 5 com keyword principal
-- 3 com diferenciais concretos (certificações, prazo, garantia)
-- 3 com CTA ("Solicite cotação", "Peça pelo WhatsApp", "Fale agora")
-- 2 com prova social (anos no mercado, número de clientes)
-- 2 com proposta de valor genérica
+**15 headlines:**
+- 5 com a keyword principal
+- 3 com diferencial concreto (certificação, prazo, garantia)
+- 3 com CTA ("Peça orçamento", "Chama no WhatsApp", "Fala com a gente")
+- 2 com prova social (tempo de mercado, clientes atendidos)
+- 2 de proposta de valor mais genérica
 
 **4 descriptions** (90 caracteres cada):
 - 1 institucional + CTA
 - 1 com diferencial técnico + CTA
-- 1 com urgência/escassez (se aplicável)
+- 1 com urgência, se couber
 - 1 com prova social + CTA
 
-**Restrições do Google:**
-- Headline: 30 caracteres
-- Description: 90 caracteres
-- Sem emojis, sem caps lock, sem repetição de palavras
-- Sem afirmações superlativas não-comprovadas ("o melhor", "número 1") sem fonte
+**Limites do Google:** headline até 30 caracteres, description até 90. Sem emoji, sem caixa alta, sem repetir palavra. Sem superlativo não comprovado ("o melhor", "número 1") sem base real.
 
-Seguir `_memoria/preferencias.md` pra tom.
+Tom conforme `_memoria/preferencias.md`.
 
 ### Passo 5 — Extensões
 
-Gerar CSVs separados pra cada tipo de extensão:
+- **Sitelinks** (4-6): "Quem somos", "Catálogo", "Cases", "WhatsApp", "Como chegar"
+- **Chamada:** telefone de `_memoria/perfil.md`
+- **Snippets:** lista de serviços/categorias
+- **Preço**, se fizer sentido: faixas dos serviços principais
+- **Promoção**, se houver: desconto ou condição especial
 
-- **Sitelinks** (4-6): "Sobre nós", "Catálogo", "Cases", "WhatsApp", "Localização"
-- **Chamadas** (telefone): puxar de `_memoria/perfil.md`
-- **Snippets estruturados:** lista de serviços, categorias de produto
-- **Preço** (se aplicável): faixas de preço dos serviços principais
-- **Promoção** (se aplicável): desconto, condição especial
+### Passo 6 — Configuração da campanha
 
-### Passo 6 — Configurações da campanha
+Arquivo `configuracoes.md` com:
 
-Gerar arquivo `configuracoes.md` com:
-
-- **Estratégia de lance:** "Maximizar conversões" pra começar (depois migrar pra "Maximizar conversões com tCPA" quando tiver 30+ conversões)
-- **Orçamento diário:** conforme briefing
-- **Segmentação geográfica:** raio em km a partir do endereço
-- **Idioma:** Português
-- **Dispositivos:** ajustes de lance recomendados (mobile +0%, desktop +0%, tablet -20%)
-- **Programação:** dias e horários conforme negócio
-- **Conversões a configurar:** clique no WhatsApp, envio de formulário, ligação telefônica, tempo no site
+- Estratégia de lance: "Maximizar conversões" no início, migrar pra tCPA depois de 30+ conversões
+- Orçamento diário do briefing
+- Raio geográfico a partir do endereço
+- Idioma: português
+- Ajuste por dispositivo (mobile +0%, desktop +0%, tablet -20% como ponto de partida)
+- Programação de dias/horário conforme o negócio
+- Conversões a configurar: clique no WhatsApp, formulário, ligação, tempo no site
 
 ### Passo 7 — Gerar os CSVs
 
-Estrutura de pastas final:
-
 ```
 marketing/campanhas/google-ads-<YYYY-MM-DD>/
-  campanhas.csv          ← linha por campanha
-  grupos.csv             ← linha por grupo de anúncio
-  keywords.csv           ← keywords + match type
-  keywords-negativas.csv ← negativas por grupo + lista global
-  anuncios.csv           ← RSAs (headlines + descriptions)
+  campanhas.csv
+  grupos.csv
+  keywords.csv
+  keywords-negativas.csv
+  anuncios.csv
   extensoes-sitelinks.csv
   extensoes-chamadas.csv
   extensoes-snippets.csv
-  extensoes-preco.csv (se aplicável)
-  configuracoes.md       ← config + checklist de import
-  README.md              ← passo a passo pra importar no Google Ads Editor
+  extensoes-preco.csv (se houver)
+  configuracoes.md
+  README.md   ← passo a passo de importação
 ```
 
-**Formato dos CSVs:** seguir o padrão de importação do Google Ads Editor (colunas: Campaign, Ad group, Keyword, Match type, Status, Max CPC, etc.).
+Colunas seguindo o padrão de importação do Google Ads Editor (Campaign, Ad group, Keyword, Match type, Status, Max CPC, etc.).
 
-### Passo 8 — Resumo + próximos passos
-
-Mostrar pro usuário:
+### Passo 8 — Fechar
 
 ```
 ✓ Campanha pronta: marketing/campanhas/google-ads-<YYYY-MM-DD>/
 
-Estrutura:
-- <N> campanhas
-- <N> grupos de anúncio
-- <N> palavras-chave (positivas)
-- <N> palavras-chave negativas
-- <N> RSAs
+- <N> campanhas · <N> grupos · <N> keywords (+<N> negativas) · <N> RSAs
 
 Pra subir:
-1. Abrir Google Ads Editor (desktop)
+1. Abrir o Google Ads Editor
 2. Conta → Importar → CSV
-3. Subir campanhas.csv primeiro, depois grupos, keywords, anúncios, extensões
-4. Revisar status (tudo "pausado" inicialmente — ativar manualmente)
-5. Conferir conversões configuradas no Google Tag Manager
-6. Ativar campanha quando estiver tudo OK
+3. Ordem: campanhas → grupos → keywords → anúncios → extensões
+4. Tudo entra pausado — ativar manualmente depois de revisar
+5. Confirmar que as conversões estão configuradas no Tag Manager
+6. Ativar quando estiver tudo certo
 
-Sugestão de orçamento inicial: R$<X>/dia por <Y> dias antes de avaliar.
+Orçamento sugerido pra começar: R$<X>/dia por <Y> dias antes de avaliar.
 ```
 
 ---
 
 ## Regras
 
-- **Nunca inventar dados de CPC.** Se o cliente perguntar quanto vai custar, falar que depende da concorrência real e dar uma faixa baseada em WebSearch.
-- **Sempre começar pausado.** Cliente revisa, ativa quando aprovar.
-- **Não anunciar pra termos informacionais.** "Como fazer X" raramente converte — deixar pra SEO orgânico.
-- **Match type:** começar com Phrase Match na maioria. Exact pra termos premium. Broad só com dados consistentes.
-- **Lista de negativas global** é obrigatória — sem ela, queima dinheiro em buscas irrelevantes.
-- **Conversões antes de tudo.** Sem conversão configurada, o Google não otimiza — relatar isso e pedir setup antes de ativar.
-- Copies seguem `_memoria/preferencias.md` estritamente. Sem jargão de marketing se o público não usa.
+- **Nunca inventar CPC.** Se perguntarem quanto vai custar, dizer que depende da concorrência real e dar uma faixa via WebSearch.
+- **Sempre nasce pausado.** Quem ativa é o usuário, depois de revisar.
+- **Sem anúncio pra termo informacional** — "como fazer X" quase não converte, isso é papel do SEO orgânico.
+- **Match type:** Phrase na maioria, Exact pros termos mais valiosos, Broad só com dado histórico consistente.
+- **Lista de negativa global é obrigatória** — sem ela, o orçamento vaza em busca irrelevante.
+- **Sem conversão configurada, o Google não otimiza nada** — avisar e pedir esse setup antes de ativar.
+- Copy sempre seguindo `_memoria/preferencias.md`, sem jargão que o público não usa.

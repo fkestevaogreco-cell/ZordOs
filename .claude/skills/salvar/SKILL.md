@@ -1,49 +1,49 @@
 ---
 name: salvar
 description: >
-  Salva o trabalho dessa pasta pessoal no GitHub (commit + push). Na primeira vez configura o
-  repositório remoto. Use quando o usuário disser "salvar", "salva no github", "commit", "push",
-  "/salvar" ou pedir backup do trabalho.
+  Garante que o trabalho dessa pasta está salvo no GitHub (commit + push), configurando o
+  repositório remoto na primeira vez que rodar. Use quando o usuário disser "salvar", "salva
+  no github", "commit", "push", "/salvar" ou pedir backup do trabalho.
 ---
 
-# /salvar — Salvar no GitHub
+# /salvar — Backup no GitHub
 
-Skill de uma função só: garantir que o trabalho do usuário está no GitHub. Fácil pra quem nunca usou git.
+Uma função só: o que você fez não pode existir só no seu computador.
 
 ## Workflow
 
-### Primeira vez (repositório não inicializado)
+### Ainda sem repositório
 
-Detectar com `git rev-parse --is-inside-work-tree`. Se falhar:
+Testar com `git rev-parse --is-inside-work-tree`. Se der erro:
 
 1. Perguntar:
-   > "Esse é o primeiro syncar. Você já tem um repositório criado no GitHub pra esse workspace?
-   > 1. Sim, me passa a URL (ex: https://github.com/usuario/nome.git)
-   > 2. Não, vou criar agora — me dá um nome pro repositório (ex: meu-pessoal)"
+   > "Primeira vez sincronizando. Já existe um repositório no GitHub pra essa pasta?
+   > 1. Sim — me passa a URL (tipo https://github.com/usuario/nome.git)
+   > 2. Não — crio agora, só me dá um nome"
 
-2. **Se opção 1:** rodar `git init`, `git add .`, `git commit -m "Setup inicial"`, `git branch -M main`, `git remote add origin <URL>`, `git push -u origin main`.
+2. **Resposta 1:** `git init`, `git add .`, `git commit -m "Setup inicial"`, `git branch -M main`, `git remote add origin <URL>`, `git push -u origin main`.
 
-3. **Se opção 2:** verificar se o `gh` CLI está instalado (`gh --version`).
-   - Se sim: rodar `git init`, criar commit inicial, e `gh repo create <nome> --private --source=. --push`.
-   - Se não: instruir o usuário a instalar `gh` (https://cli.github.com/) ou criar o repo manualmente em github.com/new e voltar com a URL.
+3. **Resposta 2:** checar se `gh` está disponível (`gh --version`).
+   - Instalado: `git init` + commit inicial + `gh repo create <nome> --private --source=. --push`.
+   - Não instalado: pedir pra instalar (cli.github.com) ou criar manualmente em github.com/new e voltar com a URL.
 
-### Commits seguintes (já configurado)
+### Já configurado
 
-1. Rodar `git status`. Se não tiver mudanças, responder "Tá tudo sincronizado, sem mudança nova" e parar.
+1. `git status` sem mudanças → responder "Já tá tudo sincronizado" e parar.
 
-2. Mostrar o `git status` curto pro usuário e perguntar:
-   > "Vou comitar tudo isso. Quer descrever a mudança em uma frase ou usa o resumo automático?"
+2. Mostrar o status resumido e perguntar:
+   > "Vou salvar essas mudanças. Quer escrever a mensagem do commit ou uso uma automática?"
 
-3. Se o usuário fornecer mensagem, usar. Se não, gerar uma mensagem baseada nos arquivos alterados.
+3. Usar a mensagem do usuário, ou gerar uma a partir dos arquivos alterados.
 
 4. `git add .` → `git commit -m "<mensagem>"` → `git push`.
 
-5. Confirmar com link do repositório (extrair de `git remote get-url origin`):
-   > "Sincronizado. Ver no GitHub: <URL>"
+5. Confirmar com a URL (via `git remote get-url origin`):
+   > "Salvo. Repositório: <URL>"
 
 ## Regras
 
-- Nunca usar `--force` sem o usuário pedir explicitamente
-- Nunca rodar `git reset --hard` ou outras destrutivas sem confirmação clara
-- Se o push falhar por divergência, avisar o usuário e oferecer `git pull --rebase` antes de tentar de novo
-- Se o usuário ainda não tiver `git` configurado (`user.name` / `user.email`), perguntar e configurar com `git config --global` na primeira vez
+- `--force` só se o usuário pedir isso explicitamente
+- Nada de `git reset --hard` ou outro comando destrutivo sem confirmação clara antes
+- Push rejeitado por divergência: avisar e oferecer `git pull --rebase` antes de tentar de novo
+- `user.name`/`user.email` não configurados: perguntar e rodar `git config --global` na primeira vez

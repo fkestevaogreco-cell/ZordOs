@@ -1,30 +1,27 @@
 ﻿---
 name: relatorio-ads
 description: >
-  Gera relatório semanal de performance de anúncios pagos (Google Ads + Meta Ads). Lê CSVs
-  exportados das plataformas (ou prints) e devolve análise executiva com KPIs, top criativos,
-  alertas (queima de orçamento, CTR baixo, conversões caindo) e recomendações práticas pra
-  semana seguinte.
-  Use quando o usuário pedir "relatório de ads", "relatório de campanha", "como foram os ads",
-  "performance da semana", "relatorio meta", "relatorio google ads", ou /relatorio-ads.
+  Lê os exports de Google Ads e Meta Ads (CSV ou print) e devolve um relatório semanal com
+  KPIs, destaques de criativos, alertas (orçamento queimando, CTR caindo, conversão sumindo)
+  e o que fazer na semana seguinte. Use quando o usuário pedir "relatório de ads", "relatório
+  de campanha", "como foram os ads", "performance da semana", "relatorio meta", "relatorio
+  google ads", ou /relatorio-ads.
 ---
 
-# /relatorio-ads — Relatório semanal de Google Ads + Meta Ads
+# /relatorio-ads — Relatório semanal de Google + Meta Ads
 
-Skill que transforma exports brutos das plataformas em relatório executivo que o dono entende sem precisar abrir a interface do Google ou da Meta.
+Pega o export cru das duas plataformas e devolve algo que o dono entende sem abrir o painel de nenhuma delas.
 
 ## Dependências
 
 - **Contexto:** `_memoria/perfil.md`, `_memoria/foco.md`
-- **Tom de voz:** `_memoria/preferencias.md`
-- **Inputs:** CSVs do Google Ads e/ou Meta Ads Manager. Print também aceito (transcrever)
-- **Histórico:** `marketing/campanhas/relatorios/` (criar se não existir)
+- **Tom:** `_memoria/preferencias.md`
+- **Entrada:** CSV do Google Ads e/ou Meta Ads Manager (print também serve, transcrever)
+- **Histórico:** `marketing/campanhas/relatorios/` (criar se faltar)
 
 ---
 
-## Como rodar
-
-Usuário roda o comando e cola/aponta os arquivos:
+## Como chamar
 
 ```
 /relatorio-ads
@@ -32,103 +29,80 @@ dados/google-ads-2026-05-12.csv
 dados/meta-ads-2026-05-12.csv
 ```
 
-Ou simplesmente:
-
-```
-/relatorio-ads
-```
-
-Aí a skill pergunta onde estão os exports da semana.
+Ou só `/relatorio-ads` — a skill pergunta onde estão os arquivos da semana.
 
 ## Workflow
 
 ### Passo 1 — Ler os exports
 
-**Google Ads:** colunas mínimas esperadas — Campanha, Grupo, Impressões, Cliques, CTR, CPC médio, Custo, Conversões, CPA, Conv. rate.
+**Google Ads precisa de:** Campanha, Grupo, Impressões, Cliques, CTR, CPC médio, Custo, Conversões, CPA, Taxa de conversão.
 
-**Meta Ads:** colunas mínimas esperadas — Campanha, Conjunto, Impressões, Alcance, Cliques no link, CTR, CPM, Frequência, Custo, Resultados, Custo por resultado.
+**Meta Ads precisa de:** Campanha, Conjunto, Impressões, Alcance, Cliques no link, CTR, CPM, Frequência, Custo, Resultados, Custo por resultado.
 
-Se faltar coluna crítica (Conversões / Resultados), avisar e seguir só com tráfego.
+Coluna de conversão faltando: avisar e seguir só com dados de tráfego.
 
-### Passo 2 — Comparar com a semana anterior
+### Passo 2 — Comparar com a semana passada
 
-Buscar em `marketing/campanhas/relatorios/` o relatório anterior. Se existir, calcular variação semana vs semana:
+Procurar o relatório anterior em `marketing/campanhas/relatorios/`. Existindo, calcular a variação de: investimento, cliques/impressões, CTR, CPC/CPM, conversões totais, CPA, custo por canal.
 
-- Investimento total
-- Cliques / Impressões
-- CTR (clique / impressão)
-- CPC / CPM
-- Conversões totais (Google + Meta)
-- CPA (custo / conversão)
-- Custo por canal
+Sem relatório anterior: é a primeira leitura, vira baseline.
 
-Se não existir, é a primeira leitura — sinalizar como baseline.
+### Passo 3 — Resumo no topo
 
-### Passo 3 — Resumo executivo (topo do relatório)
-
-Uma página, leitura de 2 minutos. Estrutura:
+Uma tela, dois minutos de leitura:
 
 ```markdown
-# Relatório de Ads — semana <DD/MM> a <DD/MM>
+# Ads da semana — <DD/MM> a <DD/MM>
 
-## Resumo executivo
+## Resumo
 
 **Investimento:** R$ X.XXX (▼/▲ Y% vs semana anterior)
 **Conversões:** N (▼/▲ Y%)
 **CPA médio:** R$ X.XX (▼/▲ Y%)
 
-**Canais:**
-- Google Ads: R$ X.XXX → N conversões (CPA R$ X.XX)
-- Meta Ads:   R$ X.XXX → N conversões (CPA R$ X.XX)
+**Por canal:**
+- Google: R$ X.XXX → N conversões (CPA R$ X.XX)
+- Meta:   R$ X.XXX → N conversões (CPA R$ X.XX)
 
-**Headline da semana:** 1 frase do que mais importa (campanha que estourou, criativo que matou,
-alerta de orçamento, queda inesperada).
+**O que mais importou essa semana:** uma frase (campanha que estourou, criativo que funcionou, alerta de orçamento, queda fora do padrão).
 ```
 
-### Passo 4 — Detalhamento por canal
+### Passo 4 — Por canal
 
-Pra cada canal, listar:
-
-**Top 3 campanhas/grupos por performance** (menor CPA, maior conv. rate)
-**Bottom 3** (maior CPA, menor conv. rate) — sinalizar pra pausar ou ajustar
-**Top criativos** (Meta): impressões + CTR + custo por resultado
-**Bottom criativos** (Meta): pra trocar ou pausar
-**Palavras-chave com mais custo e zero conversão** (Google) — virar negativas
+- **Top 3** campanhas/grupos (menor CPA, maior conversão)
+- **Bottom 3** (sinalizar pra pausar ou ajustar)
+- **Criativos Meta** que performaram (e os que não)
+- **Keywords do Google** que gastaram e não converteram — candidatas a negativa
 
 ### Passo 5 — Alertas automáticos
 
-Varrer os dados e gerar alertas em vermelho/amarelo:
-
-| Alerta | Critério |
+| Alerta | Quando disparar |
 |---|---|
-| 🔴 Queima de orçamento | Campanha gastou >R$X com 0 conversões |
-| 🔴 CTR despencou | CTR caiu >30% vs semana anterior |
-| 🟡 Frequência alta (Meta) | Conjunto com freq > 3.0 — público saturado |
-| 🟡 Conv. rate baixa | <1% em campanha Search |
-| 🟡 CPC subindo | CPC médio +20% vs semana anterior |
-| 🟢 Oportunidade | Campanha com CTR/conv acima da média + orçamento limitado → considerar aumentar |
+| 🔴 Queimando orçamento | Gastou >R$X, 0 conversão |
+| 🔴 CTR despencou | Caiu >30% vs semana anterior |
+| 🟡 Frequência alta (Meta) | >3.0 — público já saturado |
+| 🟡 Conversão baixa | <1% em Search |
+| 🟡 CPC subindo | +20% vs semana anterior |
+| 🟢 Oportunidade | CTR/conversão acima da média, orçamento ainda curto → considerar aumentar |
 
-### Passo 6 — Recomendações pra semana
+### Passo 6 — O que fazer na próxima semana
 
-Lista curta (3-5 itens) de ações concretas:
+3 a 5 ações concretas:
 
 ```markdown
-## Pra fazer na próxima semana
+## Pra semana que vem
 
-1. **Pausar** Grupo "X" — gastou R$ 230 sem conversão em 7 dias
-2. **Adicionar negativas:** [lista de termos que apareceram nos search terms e não convertem]
-3. **Trocar criativo Meta** do conjunto "Y" — frequência 4.2, performance caindo
-4. **Aumentar orçamento** da campanha "Z" — CPA R$ 12, abaixo do alvo
-5. **Testar** novo RSA com headline "<sugestão baseada em concorrência atual>"
+1. **Pausar** Grupo "X" — R$ 230 gastos, zero conversão em 7 dias
+2. **Negativar:** [termos que gastaram sem converter]
+3. **Trocar criativo** do conjunto "Y" — frequência 4.2, caindo
+4. **Subir orçamento** da campanha "Z" — CPA R$ 12, abaixo da meta
+5. **Testar** headline nova: "<sugestão baseada na concorrência>"
 ```
 
 ### Passo 7 — Salvar
 
-```
-marketing/campanhas/relatorios/<YYYY-MM-DD>-relatorio.md
-```
+`marketing/campanhas/relatorios/<YYYY-MM-DD>-relatorio.md`, com frontmatter:
 
-Frontmatter com:
 ```yaml
 ---
 periodo_inicio: YYYY-MM-DD
@@ -140,24 +114,24 @@ canais: [google-ads, meta-ads]
 ---
 ```
 
-Esse frontmatter facilita comparações futuras com scripts e a leitura de longo prazo.
+Isso deixa comparações futuras mais fáceis de automatizar.
 
-### Passo 8 — Entrega
+### Passo 8 — Entregar
 
-Mostrar o resumo executivo direto no chat (Passos 3 + 5 + 6) e apontar pro arquivo completo:
+Resumo direto no chat (Passos 3, 5 e 6), apontando pro arquivo completo:
 
-> "Relatório completo em `marketing/campanhas/relatorios/<data>-relatorio.md`. Quer que eu envie por email pro cliente?"
+> "Relatório completo em `marketing/campanhas/relatorios/<data>-relatorio.md`. Envio por email?"
 
-Se sim, chamar `/email-profissional` com o resumo executivo + link/anexo.
+Sim → chamar `/email-profissional` com o resumo e o anexo/link.
 
 ---
 
 ## Regras
 
-- **Nunca inventar números.** Se o export tá truncado ou ilegível, dizer "dados incompletos" e seguir só com o que dá.
-- **Comparação é o que importa.** Número solto ("R$ 1.200 essa semana") não significa nada sem o comparativo.
-- **Alertas em ordem.** Vermelho primeiro, amarelo depois, verde por último.
-- **Recomendações concretas.** "Pausar Grupo X" > "Otimizar campanhas". Nome da campanha, valor, motivo.
-- **Linguagem do dono.** Seguir `_memoria/preferencias.md`. CPM, CTR, CPA são OK se o dono já entende; se não, traduzir ("custo por mil pessoas que viram", "% de quem clicou", "quanto custou cada cliente").
-- **Frequência boa pra Meta:** 1.5–3.0. Acima de 3.0 já satura. Acima de 4.0 vira ruído.
-- **Quando reportar perda:** não amenizar. "A campanha X queimou R$ 200 sem trazer venda" é mais útil que "a campanha X teve performance abaixo do esperado".
+- **Nunca inventar número.** Export truncado ou ilegível: dizer "dado incompleto" e seguir com o que der.
+- **Comparação é o que importa.** Um número solto não diz nada sem o antes/depois.
+- **Ordem dos alertas:** vermelho, depois amarelo, depois verde.
+- **Recomendação concreta.** "Pausar Grupo X" vale mais que "otimizar campanhas" — sempre nome, valor, motivo.
+- **Linguagem do dono:** se ele já entende CPM/CTR/CPA, usa os termos; se não, traduz ("quanto custou cada mil pessoas que viram", "quanto custou cada cliente").
+- **Frequência saudável no Meta:** 1.5-3.0. Acima de 3 já satura, acima de 4 vira ruído.
+- **Perda é perda.** "A campanha X queimou R$ 200 sem venda nenhuma" é mais útil que suavizar com "performance abaixo do esperado".

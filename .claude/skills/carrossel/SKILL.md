@@ -1,253 +1,228 @@
 ﻿---
 name: carrossel
 description: >
-  Cria carrosséis e posts visuais pra Instagram, TikTok, LinkedIn com a identidade visual da marca.
-  Gera HTML estilizado + renderiza em PNG 1080x1350 via Playwright, com legenda pronta no final.
-  Suporta carrossel texto puro, carrossel com foto IA (gerada via OpenAI) e post único.
+  Cria carrosséis e posts avulsos pra Instagram, TikTok e LinkedIn já na identidade visual
+  configurada. Gera HTML e renderiza em PNG via Playwright, com legenda pronta no final.
+  Cobre carrossel em texto puro, carrossel com foto (real ou gerada por IA) e post único.
   Use quando o usuário pedir "carrossel", "post", "conteúdo pro instagram", "criar imagem",
   "gerar foto", "post educativo", ou /carrossel.
 ---
 
-# /carrossel — Carrossel e posts visuais
+# /carrossel — Peça visual pronta pra postar
 
-Skill central de criação de conteúdo visual. Pega um tema → entrega HTMLs estilizados + PNGs prontos pra postar + legenda no padrão da marca.
+A skill mais usada do sistema: tema entra, sai HTML + PNGs + legenda, no padrão visual configurado.
 
 ## Dependências
 
-- **Identidade visual:** `identidade/design-guide.md` — LER ANTES de criar qualquer visual
-- **Contexto do negócio:** `_memoria/perfil.md`
-- **Tom de voz:** `_memoria/preferencias.md`
-- **Playwright:** pra renderizar HTML em PNG (`npx playwright screenshot` ou via `render.js`)
-- **OpenAI API (opcional):** pra gerar fotos realistas — só se o cliente tiver chave configurada
-- **Outputs vão em:** `marketing/conteudo/<tipo>-<tema>-<YYYY-MM-DD>/`
+- **Identidade:** `identidade/design-guide.md` — ler antes de desenhar qualquer coisa
+- **Contexto:** `_memoria/perfil.md`
+- **Tom:** `_memoria/preferencias.md`
+- **Renderização:** Playwright (via `render.js` ou `npx playwright screenshot`)
+- **Foto por IA (opcional):** API da OpenAI, só se a chave estiver configurada
+- **Saída:** `marketing/conteudo/<tipo>-<tema>-<YYYY-MM-DD>/`
 
 ---
 
-## Tipos de conteúdo
+## O que essa skill entrega
 
-Ao receber um pedido, identificar qual tipo se encaixa:
+Primeiro passo é identificar qual dos três formatos serve:
 
-### 1. CARROSSEL TEXTO PURO
-- **Quando usar:** posts educacionais, dicas, listas, explicações
-- **Formato:** 1080x1350 (4:5) — sempre
-- **Estilo:** tipografia clean, cores da marca alternadas, sem fotos
+### Carrossel em texto
+- Pra conteúdo educativo, dica, lista, explicação
+- Formato 1080x1350 (4:5), sempre
+- Tipografia limpa, cores alternando, sem foto
 
-### 2. CARROSSEL COM FOTO
-- **Quando usar:** apresentação visual, conteúdo aspiracional, capa com personagem
-- **Formato:** 1080x1350 (4:5)
-- **Estilo:** foto como capa com gradient overlay + slides internos no padrão alternado
-- **Foto:** pode ser IA (gerada por OpenAI) ou real (passada pelo usuário)
+### Carrossel com foto
+- Pra apresentação visual, capa com personagem, conteúdo mais aspiracional
+- Formato 1080x1350
+- Capa com gradiente sobre a foto + slides internos no padrão alternado
+- Foto pode vir de IA (OpenAI) ou ser real, enviada pelo usuário
 
-### 3. POST ÚNICO
-- **Quando usar:** frase de impacto, dado/estatística, depoimento, bastidores
-- **Formato:** 1080x1350
-- **Estilo:** varia conforme o conteúdo (citação, número grande, foto com overlay)
+### Post único
+- Frase de impacto, número/estatística, depoimento, bastidor
+- Formato 1080x1350
+- Estilo varia com o conteúdo: citação, número grande, foto com overlay
 
-Se o tipo não estiver claro, perguntar:
-> "Que tipo de conteúdo? (1) carrossel texto, (2) carrossel com foto, (3) post único"
-
----
-
-## Estilo visual base
-
-O ZordOS tem um estilo próprio — editorial, calmo, premium. Sem clip-art, sem emoji decorativo, sem gradiente arco-íris, sem template genérico de IA. `identidade/design-guide.md` sobrescreve esses padrões; quando o design-guide for vago ou estiver em branco, usar o que tá aqui (não parar pra pedir `/instalar` — o `/carrossel` funciona com defaults bons).
-
-### Tipografia padrão
-
-- **Fonte:** Inter (Google Fonts), pesos 400/500/600/700/800/900
-- **Título de capa:** 90-100px, weight 900, line-height 0.98, letter-spacing **-0.04em**
-- **H2 (slides internos):** 60-72px, weight 800, line-height 1.04, letter-spacing **-0.035em**
-- **Corpo:** 20-24px, weight 500, line-height 1.5
-- **Eyebrow/kicker:** 13-16px, weight 700-800, **UPPERCASE**, letter-spacing **0.22-0.32em**, cor de destaque
-- **Page counter (canto sup. dir.):** 14-16px, weight 500-600, letter-spacing 0.18em, cor muted
-- **Meta/handle (@):** 15-18px, weight 600
-
-Regra do tipo: títulos grandes com kerning **apertado** (-0.035em), eyebrows pequenos com kerning **aberto** (0.22em+). Esse contraste é o coração do estilo.
-
-### Cores padrão (quando design-guide for vago)
-
-Paleta sóbria: fundo dark + off-white + **UMA** cor de destaque. Nunca quatro cores brigando.
-
-- Fundo escuro: `#0E1116` ou `#1A1A1A`
-- Fundo claro alternativo: `#F5ECD7` (cream) ou `#FAFAF7`
-- Texto sobre escuro: `#FAFAF7`
-- Texto sobre claro: `#1A1A1A` (h2) e `#444` (corpo)
-- Destaque: cor da marca (uma só)
-
-### Elementos visuais recorrentes
-
-- **Régua fina** (3-4px de altura, 60-80px de largura, cor de destaque) entre kicker e h2 ou como divisor
-- **Logo top-left + page counter top-right** em todos os slides
-- **Border-top 1px** `rgba(255,255,255,0.12)` separando rodapé do conteúdo (em slides escuros)
-- **Stamps circulares** (200x200, border 3px translúcida, rotate -10deg) pra selos/datas/dados
-- **Tags/pills** uppercase, padding generoso, kerning 0.2em, pra rotular categoria do slide
-- Padding base: 70-100px nas laterais
-
-### Layouts nomeados
-
-Vocabulário de layout — cada slide tem um nome. Variar entre eles pra criar ritmo:
-
-- **CAPA** — eyebrow + título grande + subtítulo + @handle. Fundo: foto com gradient overlay (`rgba(12,10,9,0.55)` → `rgba(12,10,9,0.85)`) OU sólido (escuro/claro/destaque)
-- **SOLO** — split horizontal: foto à esquerda 50% + texto à direita 50% (kicker + h2 + régua + parágrafo)
-- **DUO** — texto em cima (kicker + h2 + régua + p) + 2 fotos lado a lado embaixo (ou 1 foto larga)
-- **NÚMERO** — numeral gigante (200-320px, weight 800, cor de destaque) como elemento gráfico + h2 + parágrafo de apoio
-- **CITAÇÃO** — aspas grandes em watermark + frase em h2 + atribuição
-- **CTA FINAL** — fundo na cor de destaque, logo centralizado, headline curta, botão/CTA, telefone/@handle
-
-**Ritmo de slide a slide:** alternar fundo escuro ↔ claro ↔ destaque. Nunca dois slides seguidos com o mesmo fundo.
+Tipo não estiver claro, perguntar:
+> "Que formato? (1) carrossel texto, (2) carrossel com foto, (3) post único"
 
 ---
 
-## Padrão do carrossel
+## Linguagem visual
 
-**Estrutura base (5 a 10 slides):**
-- **Slide 1:** layout `CAPA`
-- **Slides internos:** usar 2-3 layouts diferentes entre `SOLO` / `DUO` / `NÚMERO` / `CITAÇÃO`
-- **Slide final:** layout `CTA FINAL`
+O estilo default é editorial e contido: sem clip-art, sem emoji decorativo, sem gradiente genérico de IA. `identidade/design-guide.md` manda sempre que estiver preenchido; em branco ou vago, usar os defaults abaixo (não precisa parar pra pedir `/instalar` — o `/carrossel` funciona sozinho).
 
-Antes de criar HTML: ler `identidade/design-guide.md`. Se estiver em branco, usar o "Estilo visual base" acima como default.
+### Tipografia
 
-### Sequência de capas no feed (planejamento de grade)
+- **Fonte:** Manrope (Google Fonts), pesos 400 a 800
+- **Título de capa:** 88-104px, peso 800, line-height 0.98, letter-spacing -0.03em
+- **H2 (slide interno):** 58-70px, peso 700, line-height 1.05, letter-spacing -0.03em
+- **Corpo:** 20-24px, peso 500, line-height 1.5
+- **Eyebrow:** 13-15px, peso 700, caixa alta, letter-spacing 0.2em, cor de destaque
+- **Contador de página** (canto superior direito): 14-16px, peso 500, letter-spacing 0.16em, cor neutra
+- **Handle (@):** 15-18px, peso 600
 
-Antes de definir a capa, considerar a **última capa publicada** pra alternar:
-- claro → próxima é foto/escuro
-- foto/escuro → próxima é cor da marca
-- cor da marca → próxima é claro
-- nunca duas capas iguais em sequência
+Regra de kerning: título grande fecha o espaçamento, eyebrow pequeno abre. É esse contraste que dá o acabamento.
 
-Se o usuário não souber qual foi a última, perguntar.
+### Cores (quando o design-guide não define)
 
-### Linguagem (regra crítica)
+Paleta curta: um fundo escuro, uma alternativa clara, **uma** cor de destaque. Nunca disputa de quatro cores.
 
-Seguir `_memoria/preferencias.md`. Em geral: frases naturais, sem jargão de marketing, sem corporativês. O público real raramente fala "ticket médio", "performance", "B2B". Falar como ele fala.
+- Escuro: `#15171B`
+- Claro: `#F3EFE7`
+- Texto sobre escuro: `#F6F4EF`
+- Texto sobre claro: `#1C1C1C` (títulos) e `#4A4A4A` (corpo)
+- Destaque: a cor da marca, uma só
 
-### Legenda — sempre gerar junto
+### Elementos recorrentes
 
-Ao terminar de renderizar os PNGs, gerar **automaticamente** a legenda do post e salvar em `legenda.md` na mesma pasta. **Não esperar o usuário pedir.** Estrutura padrão:
+- Traço fino (3-4px de altura, 60-80px de largura, cor de destaque) separando eyebrow de h2
+- Logo no canto superior esquerdo + contador no direito, em todo slide
+- Linha de 1px `rgba(255,255,255,0.12)` separando rodapé do conteúdo, em fundo escuro
+- Selo circular (200x200, borda 3px translúcida, leve rotação) pra data ou dado em destaque
+- Tag/pill em caixa alta com espaçamento largo, pra marcar categoria do slide
+- Margem lateral padrão: 70-100px
 
-1. Hook (pergunta ou afirmação)
-2. Contexto (1-2 frases sobre o conteúdo)
-3. CTA pra arrastar ("Arraste pro lado e confere")
-4. Bloco de oferta (diferenciais da empresa, contato)
-5. Hashtags (10-15 — público + nicho + local se aplicável)
+### Layouts com nome
+
+Vocabulário fixo de layout, pra variar com intenção:
+
+- **CAPA** — eyebrow + título + subtítulo + handle. Fundo: foto com gradiente (`rgba(12,10,9,0.55)` a `rgba(12,10,9,0.85)`) ou cor sólida
+- **DIVISÃO** — foto de um lado (50%), texto do outro (eyebrow + h2 + traço + parágrafo)
+- **PAR** — texto em cima, duas fotos lado a lado embaixo (ou uma foto larga)
+- **DESTAQUE** — número grande (200-320px, peso 800, cor de destaque) + h2 + parágrafo de apoio
+- **CITAÇÃO** — aspas grandes como marca d'água + frase em h2 + atribuição
+- **FECHAMENTO** — fundo na cor de destaque, logo centralizado, headline curta, CTA, contato
+
+**Ritmo:** alternar fundo escuro, claro e cor de destaque. Nunca repetir o mesmo fundo em dois slides seguidos.
+
+### Sequência de capas no feed
+
+Antes de definir a capa nova, olhar qual foi a última publicada:
+- última clara → essa vem foto/escura
+- última foto/escura → essa vem na cor de destaque
+- última na cor de destaque → essa vem clara
+- nunca repetir o tipo de capa duas vezes seguidas
+
+Sem certeza de qual foi a última, perguntar.
+
+### Linguagem (crítico)
+
+`_memoria/preferencias.md` manda. Regra geral: frase natural, sem jargão de marketing. Quase ninguém fala "ticket médio" ou "performance" no dia a dia — escrever como o público fala.
+
+### Legenda — sempre junto, nunca por pedido
+
+Terminou de renderizar os PNGs, já gera a legenda em `legenda.md` na mesma pasta, sem esperar pedido:
+
+1. Hook (pergunta ou afirmação forte)
+2. Contexto em 1-2 frases
+3. CTA pro carrossel ("Arraste pro lado e confere")
+4. Diferencial + contato
+5. 10-15 hashtags (público + nicho + local, se fizer sentido)
 
 ---
 
-## Workflow
+## Como fazer
 
-### Passo 1 — Entender e planejar
+### Passo 1 — Entender antes de desenhar
 
 1. Ler `_memoria/preferencias.md` e `_memoria/perfil.md`
-2. Ler `identidade/design-guide.md` pra cores, fontes e logo
-3. Identificar o tipo de conteúdo (1, 2 ou 3)
-4. Definir o tema e o ângulo
+2. Ler `identidade/design-guide.md` (cor, fonte, logo)
+3. Decidir o formato (texto / foto / único)
+4. Fechar tema e ângulo
 
-### Passo 2 — Texto
+### Passo 2 — Texto primeiro
 
-Escrever o conteúdo seguindo as regras de tom:
+**Carrossel (5-10 slides):**
+- Capa: título de até 8 palavras, oferecer 3 opções
+- Slides internos: uma ideia por slide, frase corrida, sem bullet seco
+- Último slide: CTA + logo
 
-**Pra carrossel (5-10 slides):**
-- Slide 1 (Capa): título impactante, máx 8 palavras. Oferecer 3 opções
-- Slides internos: um insight por slide, frases naturais, sem bullet points
-- Slide final: CTA + logo
-
-**Pra post único:**
+**Post único:**
 - Frase principal em destaque
-- Contexto de apoio (se necessário)
-- CTA sutil
+- Contexto de apoio, se precisar
+- CTA discreto
 
-**CHECKPOINT:** Mostrar o texto completo. Esperar aprovação antes do visual.
+**Parar aqui e mostrar o texto completo. Só desenhar depois do aval.**
 
-### Passo 3 — Gerar fotos (se tipo 2)
+### Passo 3 — Foto por IA (só se o tipo pedir)
 
-Só se o usuário pediu carrossel com foto IA.
-
-1. Montar prompt em inglês (a API funciona melhor em inglês)
-2. Padrão genérico de prompt:
-
+1. Prompt em inglês (a API responde melhor assim)
+2. Modelo de prompt:
 ```
 Professional [TIPO] photography of [ASSUNTO],
-[DETALHES], [AMBIENTE/CONTEXTO],
-[ESTILO DE LUZ] lighting, shallow depth of field,
-shot from [ÂNGULO], [ESTILO/ESTÉTICA],
+[DETALHES], [AMBIENTE],
+[LUZ] lighting, shallow depth of field,
+shot from [ÂNGULO], [ESTÉTICA],
 editorial quality
 ```
-
-3. Gerar via script (se `scripts/gerar-imagem.js` existir):
+3. Gerar (se `scripts/gerar-imagem.js` existir):
 ```bash
 node --env-file=.env scripts/gerar-imagem.js "PROMPT" "marketing/conteudo/<pasta>/foto-<nome>.png"
 ```
+Script ainda não existe: orientar a configurar `OPENAI_API_KEY` no `.env` e criar o script, ou usar outra ferramenta.
 
-Se não tiver o script ainda, instruir o usuário a configurar `OPENAI_API_KEY` no `.env` e criar o script (ou usar outra ferramenta de geração de imagem).
+4. Mostrar a foto antes de seguir. Reprovada → ajustar prompt e gerar de novo.
 
-4. Mostrar a foto pro usuário antes de continuar.
+### Passo 4 — HTML + PNG
 
-**CHECKPOINT:** Foto aprovada → seguir. Se não, ajustar prompt e regenerar.
+1. Um único `carrossel.html` com todos os slides como `<div class="slide">`, CSS inline, Google Fonts como única dependência externa:
+   - Cor e tipografia de `identidade/design-guide.md`
+   - Pelo menos 2 layouts diferentes no mesmo carrossel
+   - Logo + contador em todo slide
+   - Último slide na cor principal, com logo e CTA
 
-### Passo 4 — Criar visuais (HTML + PNG)
-
-1. Criar **um único `carrossel.html`** com TODOS os slides como `<div class="slide">` dentro do mesmo arquivo. Inline CSS, Google Fonts como única dependência externa. Aplicar:
-   - Cores e tipografia de `identidade/design-guide.md`
-   - Mínimo 2 layouts diferentes (não repetir o mesmo em todos os slides)
-   - Logo top-left + slide-counter top-right em todos os slides
-   - Slide final: logo + CTA, fundo na cor principal
-
-   **Pra incluir foto IA no HTML:**
+   **Foto dentro do HTML:**
    ```html
    <div class="slide" style="
      background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.7)), url('foto-xxx.png');
      background-size: cover;
      background-position: center;
    ">
-     <div class="content">
-       <h2>Texto sobre a foto</h2>
-     </div>
+     <div class="content"><h2>Texto sobre a foto</h2></div>
    </div>
    ```
 
-2. Criar `render.js` na mesma pasta — script Node com Playwright que abre o HTML e tira screenshot de cada `.slide` em 1080x1350. Pode reutilizar `node_modules` de uma pasta anterior (não precisa rodar `npm install` toda vez):
+2. `render.js` na mesma pasta: script Node + Playwright, abre o HTML, tira print de cada `.slide` em 1080x1350. Reaproveitar `node_modules` de uma pasta anterior quando der (sem `npm install` de novo):
 ```bash
 NODE_PATH="<pasta-com-node_modules>/node_modules" node render.js
 ```
 
-3. Mostrar slide 1, 2 e o CTA final renderizados. Se aprovado, mostrar os intermediários.
+3. Mostrar slide 1, 2 e o fechamento renderizados. Aprovado → mostrar os do meio.
 
-### Passo 5 — Salvar e organizar
+### Passo 5 — Organizar a entrega
 
 ```
 marketing/conteudo/<tipo>-<tema>-<YYYY-MM-DD>/
   texto.md              ← texto aprovado + legenda
-  foto-<nome>.png       ← fotos geradas por IA (se houver)
+  foto-<nome>.png       ← se tiver foto gerada
   carrossel.html
   render.js
   instagram/
     slide-01.png → slide-NN.png
-  tiktok/ (se pedido — formato 9:16)
+  tiktok/ (só se pedido — 9:16)
     slide-01.png → ...
-  legenda.md            ← legenda Insta+FB
-  legenda-linkedin.md   ← (se pedido, mais formal)
+  legenda.md
+  legenda-linkedin.md   ← se pedido
 ```
 
-### Passo 6 — Conexão com blog (opcional)
+### Passo 6 — Puxar pro blog (opcional)
 
-Depois de criar o conteúdo visual, perguntar:
+Depois de entregar o visual, perguntar:
+> "Esse tema dá pra virar artigo de blog também. Crio a versão pro SEO?"
 
-> "Esse conteúdo dá pra virar artigo no blog também. Quer que eu crie a versão blog pra SEO?"
-
-Se sim, chamar `/publicar-tema` com o mesmo tema.
+Sim → chamar `/publicar-tema` com o mesmo tema.
 
 ---
 
 ## Regras
 
-- Sempre ler `identidade/design-guide.md` antes de criar qualquer visual
-- Carrossel: 1080x1350 (4:5 retrato) — sempre. TikTok/Reels: 1080x1920 (9:16) — só quando pedido explicitamente
-- Linguagem segue `_memoria/preferencias.md` estritamente
-- Sempre considerar a sequência de capa no feed antes de definir capa nova
-- Sempre gerar legenda automaticamente ao final, salvando em `legenda.md`
-- Fotos IA: sempre pedir aprovação antes de usar no carrossel
-- Fotos IA: prompts em inglês
-- Fotos IA: nunca gerar fotos de pessoas/rostos identificáveis
-- HTMLs: um único arquivo `carrossel.html` com todos os slides + `render.js` na mesma pasta. Inline CSS
-- Render: reutilizar `node_modules` quando possível (não rodar `npm install` em cada pasta)
-- Não repetir layout entre slides — usar variação visual
+- `identidade/design-guide.md` sempre antes de qualquer visual
+- Carrossel: 1080x1350 sempre. TikTok/Reels: 1080x1920, só quando pedido
+- Linguagem segue `_memoria/preferencias.md` à risca
+- Checar a sequência de capa no feed antes de fechar a capa nova
+- Legenda sempre automática, sempre em `legenda.md`
+- Foto IA: aprovação antes de usar, prompt em inglês, nunca rosto identificável
+- `carrossel.html` único + `render.js` na mesma pasta, CSS inline
+- Reaproveitar `node_modules` em vez de reinstalar a cada pasta
+- Variar layout entre slides, nunca repetir o mesmo em sequência

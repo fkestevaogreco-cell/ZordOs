@@ -1,95 +1,79 @@
 ﻿---
 name: analisar-dados
 description: >
-  Analisa um arquivo de dados (CSV, Excel, TXT, JSON) e gera um resumo executivo
-  com os principais insights, tendências e recomendações.
-  Use quando o usuário disser "analisa esse arquivo", "o que mostram esses dados",
-  "resume esses resultados", "analisa esse relatório", ou arrastar um arquivo de dados.
+  Lê um arquivo de dados (CSV, Excel, TXT, JSON) e devolve um resumo executivo com o que
+  importa: tendências, pontos fortes, riscos e recomendações. Use quando o usuário disser
+  "analisa esse arquivo", "o que mostram esses dados", "resume esses resultados", "analisa
+  esse relatório", ou arrastar um arquivo de dados.
 ---
 
-# /analisar-dados — Análise de Arquivo
+# /analisar-dados — Leitura de arquivo e resumo executivo
 
 ## Dependências
 
-- **Contexto do negócio:** `_memoria/perfil.md` (pra entender o que os dados representam)
-- **Tom de voz:** `_memoria/preferencias.md`
+- **Contexto:** `_memoria/perfil.md`, pra entender o que os números representam
+- **Tom:** `_memoria/preferencias.md`
 
 ---
 
 ## Workflow
 
-### Passo 1 — Entender o contexto
+### Passo 1 — Situar o arquivo
 
-Antes de analisar, perguntar se não estiver claro:
-- "O que é esse arquivo? (vendas, anúncios, métricas, respostas de pesquisa...)"
-- "Qual é a pergunta principal que você quer responder com esses dados?"
+Se não estiver óbvio pelo nome ou conteúdo, perguntar:
+- "Esse arquivo é de quê? (vendas, ads, métricas, pesquisa...)"
+- "Qual pergunta você quer responder com ele?"
 
-Se o contexto estiver óbvio pelo nome do arquivo ou pelo conteúdo, prossegue sem perguntar.
+Se já estiver claro, pular direto pra leitura.
 
-### Passo 2 — Ler o arquivo
+### Passo 2 — Ler
 
-Ler o arquivo fornecido. Se for Excel (.xlsx), ler com as ferramentas disponíveis pra extrair o conteúdo das células.
+Abrir o arquivo com a ferramenta certa pro formato (planilha, CSV, JSON, texto puro).
 
-### Passo 3 — Análise
+### Passo 3 — Extrair o que importa
 
-Identificar e reportar:
+**Sinais positivos:** métricas crescendo ou acima da média, destaques (produto, campanha, período que performou melhor)
 
-**O que está bom:**
-- Métricas acima da média ou em crescimento
-- Padrões positivos nos dados
-- Top performers (produtos, campanhas, períodos, etc)
+**Sinais de alerta:** quedas, números fora do padrão, o que ficou abaixo do esperado, onde está o desperdício
 
-**O que preocupa:**
-- Quedas, anomalias ou tendências negativas
-- O que está abaixo do esperado
-- Gargalos ou desperdícios visíveis
+**Comparações:** contra o período anterior (se der), melhores contra piores, como as categorias se distribuem entre si
 
-**Comparações:**
-- Período atual vs período anterior (se houver)
-- Top vs bottom performers
-- Distribuição entre categorias
+**O que não salta aos olhos:** correlações e padrões que só aparecem olhando com cuidado
 
-**Insights não óbvios:**
-- Correlações interessantes
-- Padrões que não aparecem na leitura superficial
-
-### Passo 4 — Output
-
-Gerar um resumo executivo em prosa (não só bullet points):
+### Passo 4 — Entregar em texto corrido
 
 ```markdown
-# Análise — [Nome do Arquivo/Relatório]
-*[Data da análise]*
+# Análise — [nome do arquivo]
+*[data]*
 
-## O que esses dados mostram
-[2-3 parágrafos com o panorama geral]
+## Panorama geral
+[2-3 parágrafos]
 
-## O que está funcionando
-[lista com contexto]
+## O que está indo bem
+[com contexto, não só lista seca]
 
 ## O que merece atenção
-[lista com contexto]
+[idem]
 
 ## 3 recomendações
-1. [ação concreta]
-2. [ação concreta]
-3. [ação concreta]
+1. [concreta]
+2. [concreta]
+3. [concreta]
 
 ## Números-chave
 | Métrica | Valor | Contexto |
-|---------|-------|---------|
-| ... | ... | ... |
+|---|---|---|
 ```
 
-Salvar em `estudos/analise-[nome]-[data].md` ou na pasta mais adequada pro perfil do usuário.
+Salvar em `estudos/analise-[nome]-[data].md` (ou onde fizer mais sentido pro seu jeito de organizar).
 
-Perguntar se quer exportar o resumo em HTML pra compartilhar ou apresentar.
+Perguntar se quer uma versão em HTML pra apresentar ou compartilhar.
 
 ---
 
 ## Regras
 
-- Análise em prosa, não só listas — o usuário deve poder ler e entender sem abrir o arquivo original
-- Nunca inventar dados que não estão no arquivo
-- Se os dados estiverem incompletos ou com problemas, mencionar antes de analisar
+- Texto corrido, não só tópicos soltos — tem que dar pra entender sem abrir o arquivo original
+- Nunca inventar número que não está na fonte
+- Dado incompleto ou corrompido: avisar antes de analisar em cima dele
 - Tom conforme `_memoria/preferencias.md`

@@ -1,63 +1,62 @@
 ---
 name: mapear-rotinas
 description: >
-  Mapeia tarefas repetitivas que o usuário faz no dia a dia (pessoal ou de negócio) e gera skills
-  personalizadas pra automatizá-las. Faz uma entrevista curta, propõe skills concretas e cria as
-  aprovadas em `.claude/skills/`. Use quando o usuário pedir "/mapear-rotinas", "criar skills
-  personalizadas", "automatizar minhas tarefas" ou "o que dá pra automatizar".
+  Entrevista o usuário sobre o que ele repete toda semana (vida ou negócio) e transforma em
+  skills novas dentro de `.claude/skills/`. Use quando o usuário pedir "/mapear-rotinas",
+  "criar skills personalizadas", "automatizar minhas tarefas" ou "o que dá pra automatizar".
 ---
 
-# /mapear-rotinas — Mapeamento de tarefas repetitivas em skills
+# /mapear-rotinas — Da rotina repetida pra skill pronta
 
-Skill de descoberta + criação. O objetivo é transformar o que o usuário repete em automações ativas.
+Objetivo: achar o que o usuário já faz de forma repetitiva e deixar isso automatizado de verdade, não só documentado.
 
 ## Workflow
 
-### Passo 1 — Entrevista de descoberta
+### Passo 1 — Entrevista
 
-Fazer 3 perguntas, uma por vez:
+Três perguntas, uma de cada vez:
 
-1. "Quais 3 tarefas você repete toda semana e gostaria de não ter que pensar mais?"
-2. "Pra cada uma delas, qual o input típico?"
-3. "E o que você espera de output?"
+1. "Quais tarefas você repete toda semana e já queria nem ter que pensar mais nelas? Lista até 3."
+2. "Pra cada uma, o que normalmente é o ponto de partida?"
+3. "E o que você espera receber no final de cada uma?"
 
-### Passo 2 — Proposta de skills
+### Passo 2 — Desenhar as skills propostas
 
-Pra cada tarefa, propor uma skill no formato:
+Pra cada rotina mapeada:
 
 ```
 ### /<nome-da-skill>
-**O que faz:** [uma frase]
-**Input:** [o que recebe]
-**Output:** [o que entrega]
-**Dependências:** [arquivos do _memoria/, ferramentas externas]
+**Faz:** [uma frase]
+**Recebe:** [input]
+**Entrega:** [output]
+**Precisa de:** [arquivos de _memoria/, ferramenta externa, etc.]
 ```
 
-Mostrar todas as propostas juntas e perguntar:
-> "Quais skills dessa lista você quer que eu crie agora? (pode escolher todas, algumas, ou nenhuma — também pode pedir ajustes)"
+Mostrar a lista inteira de uma vez e perguntar:
+> "Dessas, quais eu crio agora? Pode ser todas, algumas, nenhuma, ou pedir ajuste em alguma antes."
 
-### Passo 3 — Criação das skills aprovadas
+### Passo 3 — Criar as aprovadas
 
-Pra cada skill aprovada:
+Pra cada uma:
 
-1. Criar pasta `.claude/skills/<nome>/`
-2. Criar `SKILL.md` com frontmatter (`name`, `description`), workflow estruturado, dependências e regras claras
-3. Se a skill precisar de templates ou exemplos, criar dentro da pasta da skill
-4. Calibrar o tom conforme `_memoria/preferencias.md` e `_memoria/perfil.md`
+1. `.claude/skills/<nome>/` nova
+2. `SKILL.md` com frontmatter (`name`, `description`), workflow claro, dependências e regras
+3. Template ou exemplo de apoio, se a skill precisar, dentro da própria pasta
+4. Calibrar tom e conteúdo lendo `_memoria/preferencias.md` e `_memoria/perfil.md`
 
-### Passo 4 — Resumo
+### Passo 4 — Fechar
 
 ```
-Criei [N] skills:
-✓ /<nome1> — em .claude/skills/<nome1>/SKILL.md
+[N] skills criadas:
+✓ /<nome1> — .claude/skills/<nome1>/SKILL.md
 ...
 
-Pra usar: digita / e o nome da skill em qualquer sessão.
+Pra usar qualquer uma delas, é só digitar / e o nome.
 ```
 
 ## Regras
 
-- Não criar skill pra tarefa que aconteceu uma vez só. Tem que ser repetível
-- Não criar mais de 5 skills por sessão de mapeamento
-- Cada skill criada precisa ter um trigger claro na `description`
-- Se a skill depender de uma ferramenta que o usuário não tem, avisar antes de criar
+- Rotina que só aconteceu uma vez não vira skill — tem que se repetir de verdade
+- Máximo 5 skills por sessão de mapeamento
+- Toda skill criada precisa de um gatilho claro na `description`
+- Se a skill depender de ferramenta que o usuário não tem configurada, avisar antes de criar

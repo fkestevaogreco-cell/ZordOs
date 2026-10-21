@@ -1,151 +1,136 @@
 ---
 name: aprovar-post
 description: >
-  Aprova e publica um post da fila — flipa o blog de draft pra published, copia os PNGs do
-  carrossel pro public folder do site, faz commit e push (Netlify/Vercel deploya), aguarda
-  o deploy, e posta o carrossel no Instagram + Facebook via Meta Graph API. Use quando o
-  usuário disser "aprovar post X", "publicar o post do tema Y", "/aprovar-post X", ou quando
-  quiser disparar a publicação automática de um conteúdo já criado pela skill /publicar-tema.
+  Publica de verdade um conteúdo já pronto (criado por `/publicar-tema`): tira o blog do
+  draft, copia os PNGs do carrossel pro site, sobe no GitHub (deploy automático), confere
+  que foi ao ar e posta o carrossel no Instagram e Facebook via Meta Graph API. Use quando
+  o usuário disser "aprovar post X", "publicar o post do tema Y", "/aprovar-post X", ou
+  quiser disparar a publicação de algo que o /publicar-tema já criou.
 ---
 
-# /aprovar-post — Pipeline de aprovação e publicação automática
+# /aprovar-post — Do conteúdo pronto ao feed no ar
 
-Faz a ponte entre o conteúdo aprovado (blog + carrossel + legendas, criado por `/publicar-tema`)
-e a publicação real no feed (site + Instagram + Facebook).
+A ponte entre "já escrevi tudo" e "já está publicado": site, Instagram e Facebook, em sequência.
 
-## Quando NÃO usar
+## Quando não rodar
 
-- Conteúdo ainda não foi criado → use `/publicar-tema` primeiro
-- Usuário ainda está revisando → não rodar até ele dizer "aprovado" / "pode postar"
-- Site não está deployado / Meta API não configurada → seguir setup abaixo
+- Conteúdo ainda não existe → `/publicar-tema` primeiro
+- Usuário ainda revisando → só roda depois do "aprovado"/"pode postar" explícito
+- Site sem deploy automático ou Meta API sem configurar → resolver o setup abaixo antes
 
-## Pré-requisitos (uma vez só)
+## Setup (uma vez só)
 
-- `.env` na raiz com:
-  - `META_PAGE_ACCESS_TOKEN` — token de longa duração da Página FB
-  - `META_PAGE_ID` — ID da Página FB
-  - `META_IG_USER_ID` — ID da conta Insta Business
-  - `SITE_URL` — ex: `https://exemplo.com.br`
-- Site com deploy automático a partir do `main` do GitHub (Netlify, Vercel, etc.)
-- Conta Insta Business conectada à Página FB
-- Página FB com permissões corretas no Meta App
-- Scripts `scripts/postar-instagram.js` e `scripts/postar-facebook.js` configurados
+- `.env` na raiz com `META_PAGE_ACCESS_TOKEN`, `META_PAGE_ID`, `META_IG_USER_ID`, `SITE_URL`
+- Site com deploy automático a partir do `main` (Netlify, Vercel, etc.)
+- Conta Instagram Business conectada à Página do Facebook
+- Permissões corretas no Meta App
+- `scripts/postar-instagram.js` e `scripts/postar-facebook.js` prontos
 
-Se algo disso faltar: parar e apontar pro guia de setup (criar `marketing/automacao-meta-setup.md` se ainda não existir).
+Falta algo disso: parar e indicar o guia de setup (criar `marketing/automacao-meta-setup.md` se ainda não existir).
 
-## Argumento
+## Como chamar
 
-`/aprovar-post <slug>` — onde `<slug>` é o nome do arquivo do blog **sem `.md`**.
+`/aprovar-post <slug>` — nome do arquivo do blog, sem `.md`. Ex.: `/aprovar-post como-conservar-produto`.
 
-Exemplo: `/aprovar-post como-conservar-produto`
-
-Se o usuário não passou slug, listar os blogs em draft (arquivos com `draft: true`) e perguntar qual.
+Sem slug: listar os posts em draft e perguntar qual.
 
 ## Workflow
 
-### Passo 1 — Localizar arquivos
+### Passo 1 — Achar as peças
 
-- Blog: `site/.../blog/<slug>.md` (caminho depende do stack — Astro, Hugo, etc.)
-- Carrossel: procurar `marketing/conteudo/<slug>-*` (a pasta tem sufixo de data)
-- Validar que existem PNGs em `<pasta-carrossel>/instagram/slide-XX.png` (2 a 10)
-- Validar que existem `legenda.md` e `legenda-linkedin.md`
+- Blog: `site/.../blog/<slug>.md`
+- Carrossel: `marketing/conteudo/<slug>-*` (data no sufixo da pasta)
+- PNGs em `<pasta>/instagram/slide-XX.png` (2 a 10)
+- `legenda.md` e `legenda-linkedin.md` existindo
 
-Se faltar qualquer um, parar e relatar.
+Faltou algo: parar e relatar o que falta.
 
-### Passo 2 — Mostrar resumo + pedir confirmação final
+### Passo 2 — Mostrar e confirmar
 
-Mostrar pro usuário:
-- Título do blog
-- Quantos slides do carrossel
-- Primeiras 200 chars da legenda
-- URL final que vai ser publicada
+Mostrar título, número de slides, as primeiras linhas da legenda e a URL final.
 
-Perguntar: **"Confirma publicação? (sim/não)"**. Só seguir se ele disser sim.
+> "Confirma a publicação? (sim/não)"
 
-### Passo 3 — Flipar draft pra false
+Só segue com um sim explícito.
 
-Editar o frontmatter do blog: `draft: true` → `draft: false`.
+### Passo 3 — Tirar do draft
 
-### Passo 4 — Copiar PNGs pro public folder do site
+`draft: true` → `draft: false` no frontmatter.
 
-- Origem: `marketing/conteudo/<slug>-<data>/instagram/slide-*.png`
-- Destino: `site/.../public/img/posts/<slug>/slide-*.png`
-- Criar pasta de destino se não existir
-- Sobrescrever se já existir (caso seja re-publicação)
+### Passo 4 — Levar os PNGs pro site
 
-### Passo 5 — Commit + push
+De `marketing/conteudo/<slug>-<data>/instagram/` pra `site/.../public/img/posts/<slug>/`. Criar a pasta se faltar, sobrescrever se já existir.
+
+### Passo 5 — Subir
 
 ```bash
 git add site/<caminho>/blog/<slug>.md site/<caminho>/public/img/posts/<slug>/
-git commit -m "publicar: <título do blog>"
+git commit -m "publicar: <título>"
 git push origin main
 ```
 
-Esperar push terminar com sucesso.
+### Passo 6 — Esperar o deploy
 
-### Passo 6 — Aguardar deploy
-
-Deploy automático (Netlify/Vercel) leva ~1-2 min. Validar que o post está no ar:
+Deploy automático demora ~1-2 min. Confirmar com:
 
 ```bash
 curl -sf -o /dev/null -w "%{http_code}" "$SITE_URL/blog/$slug/"
 ```
 
-Aguardar HTTP 200 (com timeout de 5 min). Também checar que pelo menos `slide-01.png` está acessível:
+Esperar 200 (até 5 min). Conferir também que a primeira imagem está acessível:
 
 ```bash
 curl -sf -o /dev/null -w "%{http_code}" "$SITE_URL/img/posts/$slug/slide-01.png"
 ```
 
-Sem isso, a Meta API vai falhar — ela busca a imagem por URL pública.
+Sem isso, a Meta API não acha a imagem pra postar (ela busca por URL pública).
 
-### Passo 7 — Postar no Instagram
+### Passo 7 — Instagram
 
 ```bash
 node --env-file=.env scripts/postar-instagram.js marketing/conteudo/<slug>-<data>
 ```
 
-Capturar o post id retornado. Se falhar, **não seguir pra Facebook** — relatar e parar.
+Guardar o id do post. Deu erro: **não seguir pro Facebook** — relatar e parar aqui.
 
-### Passo 8 — Postar no Facebook
+### Passo 8 — Facebook
 
 ```bash
 node --env-file=.env scripts/postar-facebook.js marketing/conteudo/<slug>-<data>
 ```
 
-Capturar o post id retornado.
+Guardar o id do post.
 
-### Passo 9 — LinkedIn
+### Passo 9 — LinkedIn (manual por enquanto)
 
-LinkedIn é manual por enquanto (API de empresa precisa de aprovação demorada). Mostrar pro usuário:
+API de empresa do LinkedIn pede aprovação demorada, então:
 
 ```
-LinkedIn: cole esse texto manualmente em https://linkedin.com/in/<seu-perfil>:
+LinkedIn: cola esse texto em https://linkedin.com/in/<seu-perfil>:
 <conteúdo de legenda-linkedin.md>
 ```
 
-### Passo 10 — Resumo
+### Passo 10 — Fechar
 
-Mostrar:
 ```
-✓ Post publicado: <título>
+✓ Publicado: <título>
 
-Site:        <SITE_URL>/blog/<slug>/
-Instagram:   <link do post>
-Facebook:    <link do post>
-LinkedIn:    pendente — texto pronto em legenda-linkedin.md (postar manual)
+Site:      <SITE_URL>/blog/<slug>/
+Instagram: <link>
+Facebook:  <link>
+LinkedIn:  pendente — texto pronto, postar manual
 ```
 
-## Tratamento de erro
+## Se algo falhar
 
-- Push falhou: rollback do `draft: false` (restaura `draft: true`), relata e para
-- Deploy não subiu em 5 min: relata, pergunta se quer continuar mesmo assim ou abortar
-- Insta API falhou: para e relata. Site já está no ar, blog publicado — só o post no feed que não foi
-- FB falhou mas Insta OK: relata, sugere tentar de novo só o FB depois
+- Push falhou: reverte `draft: false` pra `true`, relata, para
+- Deploy não subiu em 5 min: relata e pergunta se segue mesmo assim ou aborta
+- Instagram falhou: para e relata (site e blog já foram ao ar, só o post do feed ficou pra trás)
+- Facebook falhou com Instagram OK: relata e sugere tentar só o Facebook de novo depois
 
 ## Princípios
 
-1. **Confirmação humana antes de qualquer coisa irreversível.** Nunca pular o passo 2.
-2. **Idempotente onde possível.** Re-rodar com mesmo slug deve detectar publicação prévia (blog não-draft, PNGs já no public/) e perguntar se é pra re-postar ou só atualizar.
-3. **Falha cedo, falha alto.** Qualquer pré-requisito faltando = abortar e explicar o que falta.
-4. **Logar tudo.** Cada passo imprime o que está fazendo e o resultado.
+1. Nada irreversível roda sem confirmação humana explícita — o Passo 2 nunca é pulado
+2. Rodar de novo com o mesmo slug deve perceber que já foi publicado e perguntar se é repostagem ou só atualização
+3. Pré-requisito faltando = abortar e dizer exatamente o que falta
+4. Cada passo relata o que está fazendo e o resultado

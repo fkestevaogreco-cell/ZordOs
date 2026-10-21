@@ -1,70 +1,67 @@
 ﻿---
 name: email-profissional
 description: >
-  Rascunha um email profissional a partir de um contexto livre.
-  Calibra o tom ao destinatário e ao objetivo do email.
-  Use quando o usuário disser "escreve um email pra", "preciso mandar um email sobre",
-  "como eu respondo isso", "faz um email pra [cliente/pessoa]".
+  Rascunha um email a partir do contexto que você der, livre ou estruturado, calibrando tom
+  pro destinatário e pro objetivo. Use quando o usuário disser "escreve um email pra",
+  "preciso mandar um email sobre", "como eu respondo isso", "faz um email pra
+  [cliente/pessoa]".
 ---
 
-# /email-profissional — Rascunho de Email
+# /email-profissional — Rascunho de email
 
 ## Dependências
 
-- **Contexto do negócio:** `_memoria/perfil.md`
-- **Tom de voz:** `_memoria/preferencias.md`
+- **Contexto:** `_memoria/perfil.md`
+- **Tom:** `_memoria/preferencias.md`
 
 ---
 
 ## Workflow
 
-### Passo 1 — Coletar o contexto
+### Passo 1 — Juntar o essencial
 
-Se o usuário não forneceu as informações necessárias, perguntar:
-1. "Pra quem é o email? (nome, cargo, relação com você)"
-2. "Qual é o objetivo? (cobrar, propor, responder, agradecer, seguir up...)"
-3. "Tem algo específico que precisa constar ou que precisa evitar dizer?"
+Se faltar informação, perguntar:
+1. "Pra quem é? (nome, função, tipo de relação)"
+2. "Qual o objetivo? (cobrar, propor, responder, agradecer, retomar contato...)"
+3. "Tem algo que precisa entrar ou que é melhor não dizer?"
 
-Se o usuário deu o contexto de forma livre (mesmo que bagunçado), extrai o que der e prossegue.
+Se o usuário já despejou o contexto todo de forma solta, aproveitar o que der e seguir sem interrogar.
 
-### Passo 2 — Escrever o email
+### Passo 2 — Escrever
 
-**Considerar:**
-- Tom proporcional à relação (cliente novo = mais cuidado, parceiro antigo = mais direto)
-- Objetivo claro na abertura (não enterrar o pedido no final)
-- Uma ação pedida por vez
-- Encerramento sem redundância ("Qualquer dúvida, fico à disposição" é padrão — só usar se fizer sentido)
+**Princípios:**
+- Tom na medida da relação (cliente novo pede mais cuidado, parceiro antigo aceita mais direto)
+- O motivo do email aparece logo no começo, não escondido no final
+- Um único pedido por email
+- Fechamento sem clichê automático ("fico à disposição" só entra se realmente fizer sentido ali)
 
-**Estrutura:**
+**Esqueleto:**
 ```
-Assunto: [linha de assunto direta, sem clicbait]
+Assunto: [direto, descreve o conteúdo, sem suspense]
 
 [Nome],
 
-[Parágrafo 1 — contexto ou referência ao último contato]
+[parágrafo 1 — contexto ou retomada do último contato]
 
-[Parágrafo 2 — o ponto principal ou o pedido]
+[parágrafo 2 — o ponto principal]
 
-[Parágrafo 3 — próximo passo, se houver]
+[parágrafo 3 — próximo passo, se tiver]
 
-[Assinatura]
-[Nome do usuário, de _memoria/perfil.md]
+[assinatura, puxando o nome de _memoria/perfil.md]
 ```
 
-### Passo 3 — Apresentar opções de tom (quando fizer sentido)
+### Passo 3 — Quando o assunto é delicado
 
-Se o assunto for delicado (cobrança, feedback negativo, recusa), oferecer 2 versões:
-- Versão A: mais direta
-- Versão B: mais suave
-
-Deixar o usuário escolher.
+Cobrança, feedback difícil, recusa: oferecer duas versões e deixar o usuário escolher.
+- Uma mais direta.
+- Uma mais suave.
 
 ---
 
 ## Regras
 
 - Tom segue `_memoria/preferencias.md`
-- Nunca usar linguagem corporativa genérica sem necessidade
-- Assunto do email deve ser específico e descritivo, não vago ("Seguimento", "Proposta")
-- Se for um email de cobrança, ser direto mas sem agressividade
-- Se for resposta a algo, citar o contexto na primeira linha
+- Sem corporativês desnecessário
+- Assunto específico, nunca genérico tipo "Seguimento" ou "Proposta"
+- Resposta a algo: citar o que foi dito logo na abertura
+- Cobrança: direto sem ser agressivo
