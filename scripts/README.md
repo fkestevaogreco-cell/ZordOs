@@ -1,8 +1,11 @@
-# scripts/ — utilitários do MazyOS
+# scripts/ — utilitários do ZordOS
 
 Scripts Node.js e Python que as skills chamam quando precisam fazer coisas fora do alcance da IA pura (gerar imagem, postar em rede social, renderizar HTML em PNG).
 
-A pasta vem **vazia** — cada skill que precisa de script tem instrução de como criar (e geralmente é um único setup por integração que você vai ativar).
+A pasta já vem com `postar-instagram.js` pronto; os demais scripts da tabela
+abaixo são criados sob demanda — cada skill que precisa de um tem instrução
+de como criar (geralmente um único setup por integração que você vai
+ativar).
 
 ## Scripts comuns
 
@@ -38,7 +41,7 @@ npm install playwright
 npx playwright install chromium
 ```
 
-## Como o MazyOS lida com isso
+## Como o ZordOS lida com isso
 
 Quando você roda uma skill que precisa de script ausente, o Claude vai:
 

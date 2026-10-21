@@ -10,7 +10,7 @@
  * Requer no .env (raiz do projeto):
  *   META_PAGE_ACCESS_TOKEN
  *   META_IG_USER_ID
- *   SITE_URL          (ex: https://triivision.com — usado só pra montar a URL pública das imagens)
+ *   SITE_URL          (ex: https://seusite.com.br — usado só pra montar a URL pública das imagens)
  *   FTP_HOST, FTP_USER, FTP_PASS, FTP_REMOTE_PATH  (pra subir as imagens antes de postar)
  */
 

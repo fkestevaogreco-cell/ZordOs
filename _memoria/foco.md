@@ -4,16 +4,16 @@
 > O Claude usa isso pra decidir o que sugerir primeiro e o que adiar.
 > Atualize sempre que as prioridades mudarem.
 
-## Fase (herdado do MazyOS)
+## Fase do negócio
 
-TRIIVISION em estruturação — a produção já roda, mas faltam os pilares de
-gestão que vão sustentar o crescimento para holding.
+[Onde o negócio está agora — ex: "validando o produto", "estruturando
+processos", "em crescimento", "em expansão para novo mercado".]
 
 ## Prioridade principal (negócio)
 
-1. **Gestão de clientes** — processo claro de atendimento, follow-up e entrega
-2. **Financeiro** — visibilidade do que entra, sai e fica
-3. **Prospecção** — fluxo ativo de geração de novos clientes
+1. **[prioridade 1]** — [por que importa agora]
+2. **[prioridade 2]** — [por que importa agora]
+3. **[prioridade 3]** — [por que importa agora]
 
 ## Prioridades pessoais
 

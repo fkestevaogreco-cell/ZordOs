@@ -7,22 +7,6 @@ Skills externas prontas pra instalar. Use como referencia ao criar skills novas 
 
 ---
 
-## Escrever copy e textos de venda
-
-### Schwartz Copy (resposta direta)
-**O que faz:** Escreve copy de vendas usando a metodologia de Eugene Schwartz (Breakthrough Advertising). Diagnostica o nivel de consciencia e sofisticacao do mercado antes de gerar qualquer texto.
-**Bom pra:** Landing pages, emails de venda, VSLs, cartas de venda, paginas de captura
-**Como instalar:** Ja vem como skill global. Chamar com `/schwartz-copy`
-**Fonte:** Skill validada pelo MazyOS
-
-### Ogilvy Copy (marca e posicionamento)
-**O que faz:** Gera copy institucional usando a metodologia de David Ogilvy. Pesquisa profunda, big idea, headlines informativas.
-**Bom pra:** Manifestos de marca, campanhas institucionais, taglines, brand voice, posicionamento
-**Como instalar:** Ja vem como skill global. Chamar com `/ogilvy-copy`
-**Fonte:** Skill validada pelo MazyOS
-
----
-
 ## Criar interfaces e paginas web
 
 ### Frontend Design
@@ -78,17 +62,6 @@ Skills externas prontas pra instalar. Use como referencia ao criar skills novas 
 **Bom pra:** Propostas tecnicas, specs, documentos de decisao, SOPs
 **Como instalar:** Ja vem nativo no Claude Code. Chamar com `/doc-coauthoring`
 **Fonte:** Skill nativa do Claude Code
-
----
-
-## Extrair transcricao de video
-
-### YT Transcript
-**O que faz:** Extrai transcricoes de videos do YouTube usando yt-dlp. Suporta multiplos idiomas.
-**Bom pra:** Criar conteudo a partir de videos (carrosseis, newsletters, posts)
-**Precisa de:** yt-dlp instalado (`brew install yt-dlp`)
-**Como instalar:** Ja vem como skill global. Chamar com `/yt-transcript`
-**Fonte:** Skill validada pelo MazyOS
 
 ---
 

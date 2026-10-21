@@ -1,63 +1,59 @@
 # Identidade visual
 
-> Como a marca aparece em tudo que o MazyOS gera.
+> Como a sua marca aparece em tudo que o ZordOS gera.
 > As skills de conteúdo, carrossel e post leem esse arquivo antes de criar qualquer visual.
+> Veja exemplos reais em `templates/identidade/exemplos/` pra se inspirar.
 > Edite quando a marca evoluir.
 
 ---
 
 ## Cores
 
-- **Fundo principal:** #000000 (preto)
-
-- **Cor de destaque / CTA:** #29ABE2 (azul elétrico — cor da tipografia TRIIVISION na logo)
-
-- **Texto principal:** #FFFFFF (branco)
-
-- **Fundo alternativo / cards:** #111111 (preto suave para variação)
-
-- **Cor proibida:** Cores quentes (vermelho, laranja, amarelo) — destoam da identidade tech/premium
+- **Fundo principal:** [hex]
+- **Cor de destaque / CTA:** [hex]
+- **Texto principal:** [hex]
+- **Fundo alternativo / cards:** [hex]
+- **Cor proibida:** [cores que destoam da identidade e nunca devem aparecer]
 
 ---
 
 ## Tipografia
 
-- **Títulos e destaques:** Fonte técnica/geométrica (estilo da logo — ex: Orbitron, Rajdhani, ou Bebas Neue)
-
-- **Corpo, subtítulos e botões:** Sans-serif limpa (ex: Inter, DM Sans)
-
-- **Peso do título:** Bold / ExtraBold
+- **Títulos e destaques:** [fonte]
+- **Corpo, subtítulos e botões:** [fonte]
+- **Peso do título:** [ex: Bold, ExtraBold, regular italic]
 
 ---
 
 ## Estilo geral
 
-Cinematográfico, tech, premium. Dark theme como padrão. Elementos com espaçamento generoso, sem poluição visual. Imagens de alto contraste. A marca não grita — impõe presença.
+[Duas ou três palavras que descrevem o estilo — ex: "cinematográfico,
+tech, premium" ou "quente, humano, editorial" — seguidas de uma frase
+sobre como isso se traduz visualmente.]
 
 ---
 
 ## Elementos-chave
 
-- Bordas: finas, quando usadas (1px, cor azul ou branco com baixa opacidade)
-- Border-radius dos cards: baixo — 4px a 8px (estilo mais angular/tech)
-- Botões: fundo azul (#29ABE2) com texto preto ou branco, sem sombra excessiva
-- Sombras: sutil ou nenhuma — o contraste faz o trabalho
+- Bordas: [espessura, cor, quando usar]
+- Border-radius dos cards: [valor]
+- Botões: [formato, cor de fundo, texto]
+- Sombras: [sutil, forte ou nenhuma]
 
 ---
 
 ## O que NUNCA fazer
 
-- Fundo branco ou claro como principal
-- Cores vibrantes fora do azul da marca
-- Muitos elementos visuais na mesma peça (menos é mais)
-- Emoji ou ícone infantil em qualquer material
+- [erro visual comum a evitar 1]
+- [erro visual comum a evitar 2]
+- [erro visual comum a evitar 3]
 
 ---
 
 ## Logo
 
 - **Arquivo:** identidade/logo.png *(colocar o arquivo aqui — arraste a logo pra essa pasta)*
-- **Versão pra fundo escuro:** a logo padrão já é pra fundo escuro (drone branco + texto azul em fundo preto)
+- **Versão pra fundo escuro:** [se precisar de uma versão alternativa da logo]
 - **Onde usar:** slide final do carrossel (CTA), header de propostas, slides de apresentação
 - **Tamanho sugerido:** largura entre 120-200px nos HTMLs
 
@@ -65,5 +61,5 @@ Cinematográfico, tech, premium. Dark theme como padrão. Elementos com espaçam
 
 ## Observações adicionais
 
-Logo: drone estilizado em branco com tipografia "TRIIVISION" em azul elétrico sobre fundo preto.
-Instagram: @triivision — referência de estética aplicada (carros premium, eventos, drones, espaços).
+[Qualquer outro detalhe sobre a logo, o Instagram de referência, ou a
+estética que a marca persegue.]

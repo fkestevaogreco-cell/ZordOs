@@ -1,10 +1,7 @@
-# ZordOS — Agente pessoal do Estevão
+# ZordOS — Seu agente pessoal
 
 Esse arquivo define como o Claude opera nessa pasta. Ele é editável — ajuste
 conforme o agente for sendo usado.
-
-Estrutura espelhada no MazyOS (`/Users/estevao/Desktop/TRIVISION/MazyOS`),
-mas separada porque aqui o contexto é pessoal, não só do negócio.
 
 ---
 
@@ -13,7 +10,7 @@ mas separada porque aqui o contexto é pessoal, não só do negócio.
 No início de toda conversa, ler os seguintes arquivos (quando existirem e
 estiverem preenchidos):
 
-1. `_memoria/perfil.md` — quem é o Estevão, o que faz, contexto de vida/negócio
+1. `_memoria/perfil.md` — quem é você, o que faz, contexto de vida/negócio
 2. `_memoria/preferencias.md` — tom de voz, estilo, o que evitar
 3. `_memoria/foco.md` — prioridades e foco atual (pessoal e profissional)
 
@@ -52,7 +49,7 @@ Quando o usuário corrigir algo ou der uma instrução que parece permanente
 
 Se sim, identificar onde faz mais sentido salvar:
 
-- **Sobre o Estevão ou o contexto de vida/negócio** → `_memoria/perfil.md`
+- **Sobre você ou o contexto de vida/negócio** → `_memoria/perfil.md`
 - **Sobre preferências e estilo** → `_memoria/preferencias.md`
 - **Sobre prioridades e foco** → `_memoria/foco.md`
 - **Regra de comportamento nessa pasta** → próprio `CLAUDE.md`
