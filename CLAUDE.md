@@ -1,84 +1,84 @@
-# ZordOS — Seu agente pessoal
+# ZordOS — Memória e skills pessoais
 
-Esse arquivo define como o Claude opera nessa pasta. Ele é editável — ajuste
-conforme o agente for sendo usado.
-
----
-
-## Contexto pessoal
-
-No início de toda conversa, ler os seguintes arquivos (quando existirem e
-estiverem preenchidos):
-
-1. `_memoria/perfil.md` — quem é você, o que faz, contexto de vida/negócio
-2. `_memoria/preferencias.md` — tom de voz, estilo, o que evitar
-3. `_memoria/foco.md` — prioridades e foco atual (pessoal e profissional)
-
-Usar essas informações como base pra qualquer resposta ou decisão. Não é
-necessário listar o que foi lido nem confirmar a leitura — só usar o
-contexto naturalmente.
-
-Pra qualquer tarefa visual (carrossel, post, landing page), consultar
-`identidade/design-guide.md` como referência de estilo.
+Esse arquivo governa como o Claude se comporta dentro dessa pasta: o que
+ele lê antes de responder, quando ele aprende algo novo sobre você e como
+ele cria uma skill nova. É editável — o `/instalar` completa o fim dele
+com o que for específico do seu contexto, e você pode ajustar o resto a
+qualquer momento.
 
 ---
 
-## Fluxo de trabalho
+## O que ler antes de responder
 
-Antes de executar qualquer tarefa, verificar se existe skill relevante em
-`.claude/skills/`. Se encontrar, seguir as instruções da skill. Se não
-encontrar, executar a tarefa normalmente.
+No início de cada conversa, ler (quando existirem e estiverem preenchidos):
 
-Ao concluir uma tarefa que não tinha skill mas parece repetível, perguntar:
+1. `_memoria/perfil.md` — quem você é, o que faz, contexto de vida e negócio
+2. `_memoria/preferencias.md` — como você fala, formato preferido, o que evitar
+3. `_memoria/foco.md` — o que tá prioritário agora, pessoal e profissional
 
-> "Isso pode virar uma skill pra próxima vez. Quer que eu crie?"
-
-Não perguntar pra tarefas pontuais ou perguntas simples. Só quando o padrão
-de repetição for claro. (A skill `/mapear-rotinas` faz esse mapeamento de
-forma mais estruturada quando o usuário pedir.)
+Usar isso como base de qualquer resposta ou decisão, sem precisar listar o
+que foi lido ou confirmar a leitura. Pra qualquer peça visual (carrossel,
+post, landing page), usar `identidade/design-guide.md` como referência.
 
 ---
 
-## Aprender com correções
+## Antes de qualquer tarefa
 
-Quando o usuário corrigir algo ou der uma instrução que parece permanente
-(frases como "na verdade é assim", "não faça mais isso", "prefiro assim",
-"sempre que...", "evita...", "da próxima vez..."), perguntar:
+Checar se já existe uma skill relevante em `.claude/skills/`. Se existir,
+seguir ela. Se não existir, resolver a tarefa do jeito normal — e, se a
+tarefa não tinha skill mas parece algo que vai se repetir, perguntar:
 
-> "Quer que eu salve isso pra não precisar repetir?"
+> "Acho que isso pode virar comando pra próxima vez. Crio?"
 
-Se sim, identificar onde faz mais sentido salvar:
-
-- **Sobre você ou o contexto de vida/negócio** → `_memoria/perfil.md`
-- **Sobre preferências e estilo** → `_memoria/preferencias.md`
-- **Sobre prioridades e foco** → `_memoria/foco.md`
-- **Regra de comportamento nessa pasta** → próprio `CLAUDE.md`
-
-Salvar com uma linha nova clara, sem reformatar o arquivo inteiro. Confirmar
-mostrando a linha adicionada.
-
-Não perguntar se a correção for óbvia de contexto imediato. Só perguntar
-quando a informação tiver valor duradouro.
+Só perguntar quando o padrão de repetição ficar claro, não pra tarefa
+pontual ou pergunta simples. (`/mapear-rotinas` faz essa mesma varredura de
+forma mais estruturada quando você pedir direto.)
 
 ---
 
-## Manter contexto atualizado
+## Quando você corrige algo
 
-Ao terminar uma tarefa que mudou algo relevante, perguntar:
+Frases do tipo "é diferente disso", "muda pra sempre", "prefiro que",
+"nunca mais faça assim", "a partir de agora" costumam indicar uma
+preferência duradoura, não um ajuste pontual. Nesses casos, perguntar:
 
-> "Isso mudou algo no teu contexto. Quer que eu atualize a memória?"
+> "Isso vale pra sempre? Salvo pra não esquecer."
 
-Rodar `/atualizar` pra uma varredura completa quando houver dúvida.
+Se sim, decidir onde guardar:
+
+- **Sobre você, sua vida ou seu negócio** → `_memoria/perfil.md`
+- **Sobre tom e formato** → `_memoria/preferencias.md`
+- **Sobre prioridade ou foco** → `_memoria/foco.md`
+- **Regra de comportamento do Claude nessa pasta** → este `CLAUDE.md`
+
+Adicionar uma linha nova e objetiva, sem reescrever o arquivo inteiro, e
+mostrar a linha que entrou. Pular a pergunta quando a correção for só sobre
+o que está na tela naquele momento, sem valor fora dessa conversa.
 
 ---
 
-## Criação de skills
+## Mantendo tudo em dia
 
-Quando o usuário pedir skill nova:
+Terminou algo que mudou seu contexto (projeto novo, mudança de foco,
+ferramenta nova, estrutura nova)? Perguntar:
 
-1. Perguntar se é específica dessa pasta ou útil em qualquer:
-   - Específica → `.claude/skills/nome-da-skill/SKILL.md` (local)
-   - Universal → `~/.claude/skills/nome-da-skill/SKILL.md` (global)
-2. Ler `_memoria/perfil.md` e `_memoria/preferencias.md` pra calibrar o
-   conteúdo da skill ao contexto.
-3. Se a skill precisar de arquivos de apoio, criar dentro da pasta da skill.
+> "Isso muda seu contexto. Atualizo a memória?"
+
+Na dúvida, `/atualizar` faz a varredura completa de uma vez.
+
+---
+
+## Criando uma skill nova
+
+Quando você pedir uma skill:
+
+1. Checar `templates/skills/catalogo.md` — se já tiver uma receita
+   parecida lá, usar como ponto de partida em vez de começar do zero
+2. Perguntar se ela serve só pra essa pasta ou pra qualquer projeto seu:
+   - Só essa pasta → `.claude/skills/nome-da-skill/SKILL.md`
+   - Qualquer projeto → `~/.claude/skills/nome-da-skill/SKILL.md`
+3. Ler `_memoria/perfil.md` e `_memoria/preferencias.md` antes de
+   escrever, pra calibrar tom e conteúdo ao seu contexto
+4. Criar arquivos de apoio (modelo, exemplo) dentro da própria pasta da
+   skill, se precisar
+5. Seguir o fluxo nativo de criação de skill do Claude Code
