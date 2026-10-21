@@ -77,6 +77,15 @@ e devolve relatório semanal com alertas e recomendações.
 `/email-profissional` rascunha email a partir de contexto livre ·
 `/yt-transcript` extrai a transcrição de um vídeo do YouTube.
 
+**Comercial** — relação com cliente
+`/proposta-comercial` monta orçamento/proposta a partir de um briefing rápido ·
+`/relatorio-cliente` monta relatório periódico de status pra mandar pro cliente.
+
+**Infraestrutura** — site e banco
+`/subir-site` publica o site no ar (FTP ou git, detecta qual usar) ·
+`/subir-sql` aplica uma migration/SQL no Supabase, com confirmação antes de rodar ·
+`/verificar-site` healthcheck — site no ar, SSL válido, links quebrados.
+
 ---
 
 ## Como o ZordOS pensa
