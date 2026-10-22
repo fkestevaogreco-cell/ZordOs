@@ -12,9 +12,9 @@ Objetivo único: carregar o contexto e devolver uma frase de situação antes de
 
 ## Workflow
 
-1. Ler, nessa ordem: `pessoal/sobre-mim.md`, `pessoal/agora.md`, e dar uma olhada em `marca/guia.md` só pra saber se tem conteúdo ou tá vazio.
+1. Ler, nessa ordem: `pessoal/sobre-mim.md`, `pessoal/preferencias.md`, `pessoal/agora.md`, e dar uma olhada em `marca/design.md` só pra saber se tem conteúdo ou tá vazio.
 
-2. Se `sobre-mim.md` ou `agora.md` ainda estiver com o placeholder original, responder:
+2. Se `sobre-mim.md`, `preferencias.md` ou `agora.md` ainda estiver com o placeholder original, responder:
    > "`pessoal/<arquivo>.md` ainda tá vazio. Completa agora antes de seguir?"
    E esperar.
 
@@ -34,4 +34,4 @@ Beleza, o que fazemos agora?
 
 - A resposta cabe em poucas linhas, sem rodeio
 - A única pergunta permitida é o "o que fazemos agora"
-- `marca/guia.md` vazio não entra nesse resumo — só vira assunto quando uma skill visual precisar dele
+- `marca/design.md` vazio não entra nesse resumo — só vira assunto quando uma skill visual precisar dele

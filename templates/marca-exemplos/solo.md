@@ -1,7 +1,7 @@
 ﻿# Identidade — Criador Solo
 
 > Identidade visual que rodou em cliente real — criador solo,
-> marca pessoal, audience-first. Adapta a tua em `marca/guia.md`.
+> marca pessoal, audience-first. Adapta a tua em `marca/design.md`.
 
 ---
 

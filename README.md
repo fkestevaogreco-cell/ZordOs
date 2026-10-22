@@ -94,7 +94,8 @@ ar, SSL válido, link quebrado.
 ## Por baixo do capô
 
 `pessoal/` é o que o Claude lê antes de responder: `sobre-mim.md` (quem
-você é e como você fala) e `agora.md` (o que importa agora). `marca/`
-guarda cor, fonte e padrão visual, e qualquer peça gerada respeita isso.
+você é), `preferencias.md` (como você fala) e `agora.md` (o que importa
+agora). `marca/` guarda cor, fonte e padrão visual, e qualquer peça
+gerada respeita isso.
 `scripts/` são as integrações (Instagram, Facebook, geração de imagem) que
 as skills chamam quando precisam sair do alcance da IA pura.

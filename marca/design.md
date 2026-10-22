@@ -2,7 +2,7 @@
 
 > Como a sua marca aparece em tudo que o ZordOS gera.
 > As skills de conteúdo, carrossel e post leem esse arquivo antes de criar qualquer visual.
-> Veja exemplos reais em `modelos/marca-exemplos/` pra se inspirar.
+> Veja exemplos reais em `templates/marca-exemplos/` pra se inspirar.
 > Edite quando a marca evoluir.
 
 ---

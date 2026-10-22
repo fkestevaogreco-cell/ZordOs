@@ -12,6 +12,7 @@ description: >
 
 ## Dependências
 
+- **Tom:** `pessoal/preferencias.md`
 - **Contexto:** `pessoal/sobre-mim.md`
 
 ---
@@ -26,7 +27,7 @@ Curta (1-2 frases), pessoal, específica. O oposto de atendimento automatizado.
 2. **Agradecimento variado.** Alternar "Obrigado", "Muito obrigado", "Que bom", "Valeu" — repetir sempre a mesma palavra soa automático.
 3. **Um detalhe concreto, não frase pronta.** Puxar algo da review específica ou algo real do negócio. Fora do repertório: "seu feedback é muito importante pra nós", "estamos à disposição", "agradecemos a preferência".
 4. **Emoji opcional no final.** Cabe bem em review calorosa/elogiosa. Pular em review formal, seca ou crítica. No máximo um.
-5. **Tom conforme `pessoal/sobre-mim.md`.** Nada de "premium", "qualidade ímpar", "experiência diferenciada".
+5. **Tom conforme `pessoal/preferencias.md`.** Nada de "premium", "qualidade ímpar", "experiência diferenciada".
 
 ### Exemplos (adaptar, nunca copiar literal)
 
@@ -38,7 +39,7 @@ Curta (1-2 frases), pessoal, específica. O oposto de atendimento automatizado.
 
 - **Calorosos:** 🤩 😊 🙏 ❤️
 - **Por nicho:** varia (comida 🔥👏🥩, beleza 💅✨ com cuidado, serviços 👏🙌)
-- **Evitar por soar genérico:** ✨ 🎉 💯 🚀 (a menos que já seja a cara da marca em `pessoal/sobre-mim.md`)
+- **Evitar por soar genérico:** ✨ 🎉 💯 🚀 (a menos que já seja a cara da marca em `pessoal/preferencias.md`)
 
 ---
 

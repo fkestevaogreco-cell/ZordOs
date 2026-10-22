@@ -42,7 +42,7 @@ Pra cada uma:
 1. `.claude/skills/<nome>/` nova
 2. `SKILL.md` com frontmatter (`name`, `description`), workflow claro, dependências e regras
 3. Template ou exemplo de apoio, se a skill precisar, dentro da própria pasta
-4. Calibrar tom e conteúdo lendo `pessoal/sobre-mim.md`
+4. Calibrar tom e conteúdo lendo `pessoal/preferencias.md` e `pessoal/sobre-mim.md`
 
 ### Passo 4 — Fechar
 

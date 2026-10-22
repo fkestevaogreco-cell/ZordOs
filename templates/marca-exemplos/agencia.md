@@ -1,7 +1,7 @@
 ﻿# Identidade — Agência de Performance
 
 > Identidade visual que rodou em cliente real — agência de
-> performance, tom direto, sem decoração. Adapta a tua em `marca/guia.md`.
+> performance, tom direto, sem decoração. Adapta a tua em `marca/design.md`.
 
 ---
 

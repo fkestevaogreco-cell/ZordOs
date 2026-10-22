@@ -12,7 +12,8 @@ description: >
 ## Dependências
 
 - **Contexto:** `pessoal/sobre-mim.md`
-- **Identidade visual** (se for gerar como documento, não só texto): `marca/guia.md`
+- **Tom de voz:** `pessoal/preferencias.md`
+- **Identidade visual** (se for gerar como documento, não só texto): `marca/design.md`
 
 ---
 
@@ -85,7 +86,7 @@ futuras com o mesmo cliente.
 
 - Nunca inventar valor, prazo ou escopo que o usuário não confirmou — perguntar antes
   de assumir
-- Tom segue `pessoal/sobre-mim.md`, mas propostas comerciais pedem mais formalidade
+- Tom segue `pessoal/preferencias.md`, mas propostas comerciais pedem mais formalidade
   que o padrão de conversa — calibrar pra cima sem virar "prezado cliente" genérico
 - Se o cliente já tem pasta própria (criada via `/novo-projeto`), salvar a proposta
   dentro dela em vez de `propostas/` solto

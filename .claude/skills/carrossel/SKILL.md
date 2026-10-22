@@ -14,8 +14,9 @@ A skill mais usada do sistema: tema entra, sai HTML + PNGs + legenda, no padrão
 
 ## Dependências
 
-- **Identidade:** `marca/guia.md` — ler antes de desenhar qualquer coisa
+- **Identidade:** `marca/design.md` — ler antes de desenhar qualquer coisa
 - **Contexto:** `pessoal/sobre-mim.md`
+- **Tom:** `pessoal/preferencias.md`
 - **Renderização:** Playwright (via `render.js` ou `npx playwright screenshot`)
 - **Foto por IA (opcional):** API da OpenAI, só se a chave estiver configurada
 - **Saída:** `marketing/conteudo/<tipo>-<tema>-<YYYY-MM-DD>/`
@@ -49,7 +50,7 @@ Tipo não estiver claro, perguntar:
 
 ## Linguagem visual
 
-O estilo default é editorial e contido: sem clip-art, sem emoji decorativo, sem gradiente genérico de IA. `marca/guia.md` manda sempre que estiver preenchido; em branco ou vago, usar os defaults abaixo (não precisa parar pra pedir `/instalar` — o `/carrossel` funciona sozinho).
+O estilo default é editorial e contido: sem clip-art, sem emoji decorativo, sem gradiente genérico de IA. `marca/design.md` manda sempre que estiver preenchido; em branco ou vago, usar os defaults abaixo (não precisa parar pra pedir `/instalar` — o `/carrossel` funciona sozinho).
 
 ### Tipografia
 
@@ -107,7 +108,7 @@ Sem certeza de qual foi a última, perguntar.
 
 ### Linguagem (crítico)
 
-`pessoal/sobre-mim.md` manda. Regra geral: frase natural, sem jargão de marketing. Quase ninguém fala "ticket médio" ou "performance" no dia a dia — escrever como o público fala.
+`pessoal/preferencias.md` manda. Regra geral: frase natural, sem jargão de marketing. Quase ninguém fala "ticket médio" ou "performance" no dia a dia — escrever como o público fala.
 
 ### Legenda — sempre junto, nunca por pedido
 
@@ -125,8 +126,8 @@ Terminou de renderizar os PNGs, já gera a legenda em `legenda.md` na mesma past
 
 ### Passo 1 — Entender antes de desenhar
 
-1. Ler `pessoal/sobre-mim.md`
-2. Ler `marca/guia.md` (cor, fonte, logo)
+1. Ler `pessoal/preferencias.md` e `pessoal/sobre-mim.md`
+2. Ler `marca/design.md` (cor, fonte, logo)
 3. Decidir o formato (texto / foto / único)
 4. Fechar tema e ângulo
 
@@ -166,7 +167,7 @@ Script ainda não existe: orientar a configurar `OPENAI_API_KEY` no `.env` e cri
 ### Passo 4 — HTML + PNG
 
 1. Um único `carrossel.html` com todos os slides como `<div class="slide">`, CSS inline, Google Fonts como única dependência externa:
-   - Cor e tipografia de `marca/guia.md`
+   - Cor e tipografia de `marca/design.md`
    - Pelo menos 2 layouts diferentes no mesmo carrossel
    - Logo + contador em todo slide
    - Último slide na cor principal, com logo e CTA
@@ -216,9 +217,9 @@ Sim → chamar `/publicar-tema` com o mesmo tema.
 
 ## Regras
 
-- `marca/guia.md` sempre antes de qualquer visual
+- `marca/design.md` sempre antes de qualquer visual
 - Carrossel: 1080x1350 sempre. TikTok/Reels: 1080x1920, só quando pedido
-- Linguagem segue `pessoal/sobre-mim.md` à risca
+- Linguagem segue `pessoal/preferencias.md` à risca
 - Checar a sequência de capa no feed antes de fechar a capa nova
 - Legenda sempre automática, sempre em `legenda.md`
 - Foto IA: aprovação antes de usar, prompt em inglês, nunca rosto identificável

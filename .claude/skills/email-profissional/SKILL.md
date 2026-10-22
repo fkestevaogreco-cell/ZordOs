@@ -12,6 +12,7 @@ description: >
 ## Dependências
 
 - **Contexto:** `pessoal/sobre-mim.md`
+- **Tom:** `pessoal/preferencias.md`
 
 ---
 
@@ -59,7 +60,7 @@ Cobrança, feedback difícil, recusa: oferecer duas versões e deixar o usuário
 
 ## Regras
 
-- Tom segue `pessoal/sobre-mim.md`
+- Tom segue `pessoal/preferencias.md`
 - Sem corporativês desnecessário
 - Assunto específico, nunca genérico tipo "Seguimento" ou "Proposta"
 - Resposta a algo: citar o que foi dito logo na abertura

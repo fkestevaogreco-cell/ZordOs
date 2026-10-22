@@ -18,7 +18,8 @@ desejo está e intensificá-lo na direção da oferta, não inventar um desejo n
 ## Dependências
 
 - **Contexto:** `pessoal/sobre-mim.md`
-- **Identidade visual** (se for gerar página, não só texto): `marca/guia.md`
+- **Tom de voz:** `pessoal/preferencias.md`
+- **Identidade visual** (se for gerar página, não só texto): `marca/design.md`
 
 ---
 
@@ -72,7 +73,7 @@ Estrutura varia com o formato pedido, mas sempre:
 5. **Oferta** — clara, sem ambiguidade no que a pessoa recebe
 6. **CTA** — uma ação só, repetida quando fizer sentido (não múltiplos CTAs competindo)
 
-Tom segue `pessoal/sobre-mim.md`. Se o design-guide existir e o pedido for uma página
+Tom segue `pessoal/preferencias.md`. Se o design-guide existir e o pedido for uma página
 (não só texto), montar como HTML autocontido seguindo o mesmo padrão visual do `/carrossel`.
 
 ### Passo 5 — Explicar as escolhas

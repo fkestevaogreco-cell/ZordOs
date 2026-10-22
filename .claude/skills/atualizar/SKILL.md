@@ -26,7 +26,7 @@ Pra cada arquivo de contexto, perguntar se ainda reflete a realidade:
 - `pessoal/sobre-mim.md` ainda descreve seu momento atual?
 - `pessoal/agora.md` ainda tem datas e prioridades válidas?
 - `CLAUDE.md` ainda bate com o que de fato existe na pasta?
-- `marca/guia.md` ainda é coerente com as últimas peças geradas?
+- `marca/design.md` ainda é coerente com as últimas peças geradas?
 
 ### Passo 3 — Propor, não aplicar direto
 

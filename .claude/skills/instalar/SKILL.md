@@ -2,8 +2,8 @@
 name: instalar
 description: >
   Faz o primeiro setup do ZordOS: entrevista sobre contexto pessoal/de negócio, tom de voz,
-  foco atual e identidade visual, e preenche `pessoal/sobre-mim.md`, `pessoal/agora.md`,
-  `marca/guia.md`, além de adaptar o `CLAUDE.md`. Use quando
+  foco atual e identidade visual, e preenche `pessoal/sobre-mim.md`, `pessoal/preferencias.md`,
+  `pessoal/agora.md`, `marca/design.md`, além de adaptar o `CLAUDE.md`. Use quando
   o usuário acabou de clonar o repositório, ou pedir explicitamente "rodar /instalar",
   "instalar o ZordOS", "primeiro setup".
 ---
@@ -24,7 +24,7 @@ Guardar esse nome pra usar mais adiante.
 
 ### Contexto já existente
 
-Checar se `pessoal/sobre-mim.md`, `pessoal/agora.md` ou `marca/guia.md` já têm conteúdo real (não placeholder). Se sim:
+Checar se `pessoal/sobre-mim.md`, `pessoal/preferencias.md`, `pessoal/agora.md` ou `marca/design.md` já têm conteúdo real (não placeholder). Se sim:
 
 > "Já existe contexto preenchido aqui. Sobrescrevo do zero ou só completo o que falta?"
 
@@ -39,7 +39,7 @@ Pasta limpa: seguir direto.
 3. **Agência / consultoria** — time pequeno, vários clientes
 4. **Empresa estabelecida** — já tem setores definidos (marketing, comercial, financeiro...)
 
-A escolha define qual `modelos/perfis/<perfil>.md` vira a base do `CLAUDE.md`.
+A escolha define qual `templates/perfis/<perfil>.md` vira a base do `CLAUDE.md`.
 
 ---
 
@@ -69,19 +69,22 @@ Uma pergunta por vez, espera a resposta antes de seguir. Resposta vaga: repete p
 
 ## Parte 3 — Preenchendo os arquivos
 
-**`pessoal/sobre-mim.md`** — um arquivo só, duas partes:
-- Identidade (respostas 1-4): nome, o que entrega, cliente real, estrutura de equipe
-- Voz (respostas 5-6): tom descrito a partir do exemplo real da pergunta 5, o que evitar direto da resposta 6, e um resumo geral do que combina e do que destoa
+**`pessoal/sobre-mim.md`** — respostas 1-4: nome, o que entrega, cliente real, estrutura de equipe.
+
+**`pessoal/preferencias.md`** — respostas 5-6:
+- Tom de voz: descrito a partir do exemplo real da pergunta 5
+- O que evitar: direto da resposta 6
+- Resumo geral do que combina e do que destoa
 
 **`pessoal/agora.md`** — respostas 7-8:
 - Gargalo atual
 - O que tirar das costas (marcar como candidato a `/mapear-rotinas`)
 - Próximas prioridades, derivadas do gargalo
 
-**`marca/guia.md`** — se veio algo nas respostas 9-10, preencher. Se não:
-> "Deixei `marca/guia.md` em branco por enquanto. Quando definir a identidade, edita lá — é o que as skills visuais leem antes de criar qualquer peça."
+**`marca/design.md`** — se veio algo nas respostas 9-10, preencher. Se não:
+> "Deixei `marca/design.md` em branco por enquanto. Quando definir a identidade, edita lá — é o que as skills visuais leem antes de criar qualquer peça."
 
-**`CLAUDE.md`** — puxar `modelos/perfis/<perfil-escolhido>.md`, adaptar com o que saiu da entrevista, sobrescrever o da raiz.
+**`CLAUDE.md`** — puxar `templates/perfis/<perfil-escolhido>.md`, adaptar com o que saiu da entrevista, sobrescrever o da raiz.
 
 ---
 
@@ -90,8 +93,9 @@ Uma pergunta por vez, espera a resposta antes de seguir. Resposta vaga: repete p
 ```
 ✓ Perfil: [perfil]
 ✓ pessoal/sobre-mim.md
+✓ pessoal/preferencias.md
 ✓ pessoal/agora.md
-✓ marca/guia.md — [preenchida | em branco]
+✓ marca/design.md — [preenchida | em branco]
 ✓ CLAUDE.md adaptado
 ```
 

@@ -15,7 +15,8 @@ Do briefing direto pro CSV — sem montar grupo por grupo na interface do Google
 
 ## Dependências
 
-- **Contexto:** `pessoal/sobre-mim.md` (produto, público, região, diferenciais, tom)
+- **Contexto:** `pessoal/sobre-mim.md` (produto, público, região, diferenciais)
+- **Tom:** `pessoal/preferencias.md`
 - **Pesquisa de SEO, se existir:** `marketing/seo/01-pesquisa-demanda.md`, `06-google-ads.md`
 - **Saída:** `marketing/campanhas/google-ads-<YYYY-MM-DD>/`
 
@@ -86,7 +87,7 @@ Negativas globais: termos genéricos fora do escopo + marcas concorrentes
 
 **Limites do Google:** headline até 30 caracteres, description até 90. Sem emoji, sem caixa alta, sem repetir palavra. Sem superlativo não comprovado ("o melhor", "número 1") sem base real.
 
-Tom conforme `pessoal/sobre-mim.md`.
+Tom conforme `pessoal/preferencias.md`.
 
 ### Passo 5 — Extensões
 
@@ -155,4 +156,4 @@ Orçamento sugerido pra começar: R$<X>/dia por <Y> dias antes de avaliar.
 - **Match type:** Phrase na maioria, Exact pros termos mais valiosos, Broad só com dado histórico consistente.
 - **Lista de negativa global é obrigatória** — sem ela, o orçamento vaza em busca irrelevante.
 - **Sem conversão configurada, o Google não otimiza nada** — avisar e pedir esse setup antes de ativar.
-- Copy sempre seguindo `pessoal/sobre-mim.md`, sem jargão que o público não usa.
+- Copy sempre seguindo `pessoal/preferencias.md`, sem jargão que o público não usa.

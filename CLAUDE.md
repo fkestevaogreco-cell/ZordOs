@@ -12,12 +12,13 @@ qualquer momento.
 
 No início de cada conversa, ler (quando existirem e estiverem preenchidos):
 
-1. `pessoal/sobre-mim.md` — quem você é, o que faz, como fala, o que evitar
-2. `pessoal/agora.md` — o que tá prioritário agora, pessoal e profissional
+1. `pessoal/sobre-mim.md` — quem você é, o que faz, contexto de vida e negócio
+2. `pessoal/preferencias.md` — como você fala, formato preferido, o que evitar
+3. `pessoal/agora.md` — o que tá prioritário agora, pessoal e profissional
 
 Usar isso como base de qualquer resposta ou decisão, sem precisar listar o
 que foi lido ou confirmar a leitura. Pra qualquer peça visual (carrossel,
-post, landing page), usar `marca/guia.md` como referência.
+post, landing page), usar `marca/design.md` como referência.
 
 ---
 
@@ -45,7 +46,8 @@ preferência duradoura, não um ajuste pontual. Nesses casos, perguntar:
 
 Se sim, decidir onde guardar:
 
-- **Sobre você, sua vida, seu negócio, tom ou formato** → `pessoal/sobre-mim.md`
+- **Sobre você, sua vida ou seu negócio** → `pessoal/sobre-mim.md`
+- **Sobre tom e formato** → `pessoal/preferencias.md`
 - **Sobre prioridade ou foco** → `pessoal/agora.md`
 - **Regra de comportamento do Claude nessa pasta** → este `CLAUDE.md`
 
@@ -70,13 +72,13 @@ Na dúvida, `/atualizar` faz a varredura completa de uma vez.
 
 Quando você pedir uma skill:
 
-1. Checar `modelos/skills-sugeridas.md` — se já tiver uma receita
+1. Checar `templates/skills-sugeridas.md` — se já tiver uma receita
    parecida lá, usar como ponto de partida em vez de começar do zero
 2. Perguntar se ela serve só pra essa pasta ou pra qualquer projeto seu:
    - Só essa pasta → `.claude/skills/nome-da-skill/SKILL.md`
    - Qualquer projeto → `~/.claude/skills/nome-da-skill/SKILL.md`
-3. Ler `pessoal/sobre-mim.md` antes de escrever, pra calibrar tom e
-   conteúdo ao seu contexto
+3. Ler `pessoal/sobre-mim.md` e `pessoal/preferencias.md` antes de
+   escrever, pra calibrar tom e conteúdo ao seu contexto
 4. Criar arquivos de apoio (modelo, exemplo) dentro da própria pasta da
    skill, se precisar
 5. Seguir o fluxo nativo de criação de skill do Claude Code

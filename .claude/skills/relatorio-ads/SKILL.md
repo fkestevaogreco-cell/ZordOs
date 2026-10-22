@@ -15,6 +15,7 @@ Pega o export cru das duas plataformas e devolve algo que o dono entende sem abr
 ## Dependências
 
 - **Contexto:** `pessoal/sobre-mim.md`, `pessoal/agora.md`
+- **Tom:** `pessoal/preferencias.md`
 - **Entrada:** CSV do Google Ads e/ou Meta Ads Manager (print também serve, transcrever)
 - **Histórico:** `marketing/campanhas/relatorios/` (criar se faltar)
 

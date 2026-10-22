@@ -14,6 +14,7 @@ description: >
 ## Dependências
 
 - **Contexto:** `pessoal/sobre-mim.md`
+- **Tom:** `pessoal/preferencias.md`
 - **Foco atual:** `pessoal/agora.md`
 - **Ferramentas:** WebSearch, WebFetch
 - **Saída:** `marketing/seo/`
@@ -80,7 +81,7 @@ description: >
 
    **Básico:** nome idêntico ao registrado · categoria principal + secundárias · endereço, telefone, site · horário · área de atendimento
 
-   **Descrição:** até 750 caracteres, com palavra-chave natural, tom conforme `pessoal/sobre-mim.md`
+   **Descrição:** até 750 caracteres, com palavra-chave natural, tom conforme `pessoal/preferencias.md`
 
    **Atributos e serviços:** lista de serviços relevantes + atributos (entrega, atacado, produção própria...)
 
@@ -150,7 +151,7 @@ description: >
 
    **Display/Remarketing (opcional):** público e formato
 
-3. Copy: tom de `pessoal/sobre-mim.md`, diferencial real, CTA específico, 15 headlines + 4 descriptions
+3. Copy: tom de `pessoal/preferencias.md`, diferencial real, CTA específico, 15 headlines + 4 descriptions
 4. Landing page: o site atual serve, ou precisa de uma página dedicada?
 
 **Sai em** `marketing/seo/06-google-ads.md`: estrutura completa, keywords organizadas, copy pronta, orçamento e configuração.
@@ -203,7 +204,7 @@ No final, resumo executivo com: top 5 oportunidades, ação prioritária, estima
 ## Regras
 
 - Pesquisa sempre real (WebSearch/WebFetch) — nunca inventar volume ou dado de concorrência
-- Copy e texto seguem `pessoal/sobre-mim.md` à risca
+- Copy e texto seguem `pessoal/preferencias.md` à risca
 - Termos em português do Brasil, como o público realmente busca
 - Dado que não dá pra confirmar: declarar que é estimativa e explicar a lógica usada
 - Foco em intenção comercial/transacional pro negócio local (B2B ou B2C)
