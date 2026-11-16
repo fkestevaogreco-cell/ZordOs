@@ -1,8 +1,9 @@
 ---
 name: subir-site
 description: >
-  Publica a versão atual do site no ar — via FTP (hospedagem tradicional, ex: Hostinger)
-  ou via git push (deploy automático tipo Netlify/Vercel), detectando qual se aplica.
+  Publica a versão atual do site no ar — via Cloudflare (grátis, pra quem ainda não tem
+  hospedagem), via FTP (hospedagem tradicional, ex: Hostinger) ou via git push (deploy
+  automático tipo Netlify/Vercel), detectando qual se aplica.
   Confirma que o site subiu de verdade checando a URL ao final. Use quando o usuário
   disser "sobe o site", "publica o site", "atualiza o site no ar", "site atualizado",
   ou /subir-site.
@@ -18,8 +19,9 @@ description: >
 
 ## Passo 1 — Detectar o tipo de hospedagem
 
-Primeira vez nesse projeto, decidir entre os dois modos:
+Primeira vez nesse projeto, decidir entre os três modos:
 
+- Se existe `wrangler.jsonc` na raiz do projeto → **modo Cloudflare**
 - Se `.env` tem `FTP_HOST`/`FTP_USER`/`FTP_PASS`/`FTP_REMOTE_PATH` preenchidos → **modo FTP**
 - Se a pasta é um repositório git com remote no GitHub/GitLab → perguntar: "Esse
   repositório tem deploy automático configurado (Netlify, Vercel, GitHub Pages)? Se
@@ -28,9 +30,57 @@ Primeira vez nesse projeto, decidir entre os dois modos:
 - Se nenhum dos dois estiver claro, perguntar diretamente: "Como seu site é publicado
   hoje — você sobe arquivo por FTP, ou tem um serviço (Netlify/Vercel) que publica
   sozinho quando você dá push no GitHub?"
+- Se o usuário ainda não tem hospedagem nenhuma → sugerir o **modo Cloudflare**: é
+  grátis, aguenta bastante visita e aceita domínio próprio depois.
 
 Depois de descobrir, registrar a resposta na seção "Específico desse projeto" do
 `CLAUDE.md` (ver convenção em `/novo-projeto`), pra não perguntar de novo.
+
+---
+
+## Modo Cloudflare (grátis)
+
+O site sobe como arquivos estáticos num Worker da Cloudflare. Plano gratuito, sem cartão.
+
+### Pré-requisitos (uma vez só)
+
+1. Conta grátis em cloudflare.com (o usuário cria; guiar uma tela por vez se precisar)
+2. Node.js instalado (`node --version`). Sem ele, mandar baixar a versão LTS em nodejs.org
+3. Login da Cloudflare no terminal: `npx wrangler@4 login`. Abre o navegador, o usuário
+   clica em "Allow" e volta
+4. Criar `wrangler.jsonc` na raiz do projeto:
+   ```jsonc
+   // Publicar: npx wrangler@4 deploy
+   {
+     "name": "<slug>",                  // só letras minúsculas, números e hífen
+     "compatibility_date": "<data de hoje, AAAA-MM-DD>",
+     "assets": {
+       "directory": "./<pasta-do-site>",   // ex: ./sites/doce-oficio
+       "html_handling": "auto-trailing-slash",
+       "not_found_handling": "none"
+     },
+     "workers_dev": true
+   }
+   ```
+
+### Passo 2 — Conferir o que vai subir
+
+Cada arquivo pode ter no máximo 25 MiB. Vídeo maior que isso precisa ser comprimido antes.
+Arquivo que está na pasta do site mas não deve subir (rascunho, original pesado) vai
+listado em `<pasta-do-site>/.assetsignore`, um por linha.
+
+### Passo 3 — Publicar
+
+```bash
+npx wrangler@4 deploy
+```
+
+No fim, o comando mostra o endereço do site (`https://<slug>.<subdominio>.workers.dev`).
+Na primeira vez, salvar esse endereço como `SITE_URL` no `.env`.
+
+**Domínio próprio (opcional):** o domínio precisa estar adicionado na mesma conta da
+Cloudflare. Depois, no painel: Workers & Pages → o projeto → Settings → Domains & Routes →
+Add → Custom domain. Guiar o usuário tela por tela.
 
 ---
 
@@ -90,17 +140,17 @@ do código — não há o que subir.
 ### Passo 3 — Aguardar o deploy
 
 Deploy automático leva de alguns segundos a ~2 min dependendo do serviço. Esperar e
-seguir pro Passo 4 (comum aos dois modos).
+seguir pro Passo 4 (comum aos três modos).
 
 ---
 
-## Passo 4 — Confirmar que subiu de verdade (comum aos dois modos)
+## Passo 4 — Confirmar que subiu de verdade (comum aos três modos)
 
 ```bash
 curl -sf -o /dev/null -w "%{http_code}" "$SITE_URL"
 ```
 
-Esperar HTTP 200 (timeout de 5 min no modo Git, imediato no modo FTP já que não tem
+Esperar HTTP 200 (timeout de 5 min no modo Git, até 1 min no modo Cloudflare na primeira publicação, imediato no modo FTP já que não tem
 build/deploy assíncrono). **Nunca reportar "site publicado" sem essa checagem** —
 só porque o upload/push não deu erro não significa que o site está servindo a versão
 nova (cache de CDN, erro de build silencioso, etc.).
@@ -108,7 +158,7 @@ nova (cache de CDN, erro de build silencioso, etc.).
 Resumo final:
 ```
 ✓ Site publicado: <SITE_URL>
-Modo: [FTP | Git] · Verificado: HTTP 200
+Modo: [Cloudflare | FTP | Git] · Verificado: HTTP 200
 ```
 
 ---

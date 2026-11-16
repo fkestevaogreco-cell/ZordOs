@@ -4,7 +4,7 @@
 
 Baixa, roda `/instalar`, responde uma entrevista curta sobre você. Dali em
 diante o Claude já sabe quem você é, como você escreve e o que está em foco
-essa semana, e chega com 22 comandos prontos pra marketing, vendas, produção
+essa semana, e chega com 23 comandos prontos pra marketing, vendas, produção
 e operação.
 
 ---
@@ -69,8 +69,9 @@ recomendação.
 cliente.
 
 **Operação técnica**
-`/subir-site` publica o site (detecta se é por FTP ou git) e confere se
-voltou 200 · `/subir-sql` aplica uma migration no Supabase, sempre com
+`/criar-site` monta o site do seu negócio ou de um cliente, do briefing ao
+HTML pronto, com a versão de celular conferida · `/subir-site` publica o
+site (Cloudflare grátis, FTP ou git) e confere se voltou 200 · `/subir-sql` aplica uma migration no Supabase, sempre com
 confirmação antes de rodar · `/verificar-site` faz o healthcheck: site no
 ar, SSL válido, link quebrado.
 
