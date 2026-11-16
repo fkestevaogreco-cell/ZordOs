@@ -4,7 +4,7 @@ description: >
   Faz o primeiro setup do ZordOS: entrevista sobre contexto pessoal/de negócio, tom de voz,
   foco atual e identidade visual, e preenche `pessoal/sobre-mim.md`, `pessoal/preferencias.md`,
   `pessoal/agora.md`, `marca/design.md`, além de adaptar o `CLAUDE.md`. Use quando
-  o usuário acabou de clonar o repositório, ou pedir explicitamente "rodar /instalar",
+  o usuário acabou de baixar ou clonar o ZordOS, ou pedir explicitamente "rodar /instalar",
   "instalar o ZordOS", "primeiro setup".
 ---
 

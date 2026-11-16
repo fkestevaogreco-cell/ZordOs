@@ -2,7 +2,7 @@
 
 > O Claude Code que já chega te conhecendo.
 
-Clona, roda `/instalar`, responde uma entrevista curta sobre você. Dali em
+Baixa, roda `/instalar`, responde uma entrevista curta sobre você. Dali em
 diante o Claude já sabe quem você é, como você escreve e o que está em foco
 essa semana, e chega com 22 comandos prontos pra marketing, vendas, produção
 e operação.
@@ -11,26 +11,11 @@ e operação.
 
 ## Instalação
 
-### Direto no terminal
+O ZordOS vem no arquivo `ZordOS.zip`, na área de membros do curso.
 
-```
-git clone https://github.com/fkestevaogreco-cell/ZordOs.git
-cd ZordOs
-code .
-```
-
-Abre o terminal integrado do VS Code, roda `claude` e depois `/instalar`.
-
-### Pedindo pro Claude
-
-Se já tiver o Claude Code aberto numa pasta vazia, só cola:
-
-```
-Clona o https://github.com/fkestevaogreco-cell/ZordOs.git na pasta atual,
-entra nela e roda o /instalar.
-```
-
-Ele clona, entra na pasta e já dispara a entrevista.
+1. Baixa o `ZordOS.zip` e descompacta onde quiser (a Mesa serve).
+2. No VS Code, abre a pasta `ZordOS` (Arquivo → Abrir Pasta).
+3. Abre o terminal integrado, roda `claude` e depois `/instalar`.
 
 ---
 

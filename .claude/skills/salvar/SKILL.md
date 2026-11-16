@@ -14,7 +14,9 @@ Uma função só: o que você fez não pode existir só no seu computador.
 
 ### Ainda sem repositório
 
-Testar com `git rev-parse --is-inside-work-tree`. Se der erro:
+Testar com `git rev-parse --is-inside-work-tree`. Se der erro, é a primeira vez.
+
+Também é a primeira vez se a pasta já for um repositório, mas o `origin` (`git remote get-url origin`) apontar para o repositório oficial do ZordOS (`github.com/fkestevaogreco-cell/ZordOs`, em qualquer variação de maiúscula ou com `.git` no fim). Isso acontece quando a pasta veio de um clone. Esse repositório não é do usuário: nunca dar push nele. Rodar `git remote remove origin`, avisar em uma linha ("Essa pasta ainda estava ligada ao repositório oficial do ZordOS. Desliguei para salvar no seu GitHub.") e seguir o fluxo abaixo. Nesse caso o `git init` dos passos 2 e 3 pode ser pulado, já que o repositório existe.
 
 1. Perguntar:
    > "Primeira vez sincronizando. Já existe um repositório no GitHub pra essa pasta?
